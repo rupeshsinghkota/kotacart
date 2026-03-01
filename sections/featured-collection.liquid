@@ -79,16 +79,31 @@
     display: flex;
     gap: 20px;
     overflow-x: auto;
-    padding: 10px; /* Allowance for card hover shadows */
+    padding: 10px 10px 20px 10px; /* Added bottom padding to make room for scrollbar */
     margin: -10px; /* Offset padding */
     scroll-snap-type: x mandatory;
     scroll-padding-left: 10px;
-    scrollbar-width: none; /* Firefox */
+    /* Removed scrollbar-width: none to allow Firefox scrollbar */
   }
 
-  /* Hide scrollbar for Chrome/Safari */
+  /* Custom Scrollbar for visual cue */
   .products-scroller::-webkit-scrollbar {
-    display: none;
+    height: 6px; /* Thin, elegant scrollbar */
+  }
+
+  .products-scroller::-webkit-scrollbar-track {
+    background: #f1f5f9; 
+    border-radius: 10px;
+    margin: 0 10px; /* Pad the track slightly */
+  }
+
+  .products-scroller::-webkit-scrollbar-thumb {
+    background: #cbd5e1; 
+    border-radius: 10px;
+  }
+
+  .products-scroller::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; 
   }
 
   .product-scroller-item {
