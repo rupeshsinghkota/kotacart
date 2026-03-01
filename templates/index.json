@@ -39,7 +39,7 @@
       "type": "featured-collection",
       "settings": {
         "title": "Recently Added Sets",
-        "collection": "",
+        "collection": "recently-added",
         "limit": 8,
         "show_view_all": true
       }
