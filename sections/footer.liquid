@@ -1,0 +1,257 @@
+<footer class="footer-v3">
+  <div class="container footer-content">
+    <div class="footer-grid">
+      <!-- Brand & Description -->
+      <div class="footer-brand">
+        <a href="/" class="brand-logo" style="margin-bottom: 20px;">
+          <span class="logo-circ">K</span>
+          <span class="brand-text">Kotacart <span class="store-label">Store</span></span>
+        </a>
+        <p class="brand-desc">
+          India's leading marketplace for verified, high-quality pre-owned JEE, NEET, and Foundation study materials. Trusted by thousands of students nationwide.
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon">{% render 'icon-facebook' %}</a>
+          <a href="#" class="social-icon">{% render 'icon-instagram' %}</a>
+          <a href="#" class="social-icon">{% render 'icon-whatsapp' %}</a>
+          <a href="#" class="social-icon">{% render 'icon-telegram' %}</a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links">
+        <h4>Student Shop</h4>
+        <ul>
+          <li><a href="/collections/jee-modules">JEE Prep Books</a></li>
+          <li><a href="/collections/neet-modules">NEET Prep Books</a></li>
+          <li><a href="/collections/school">Foundation Modules</a></li>
+          <li><a href="/collections/full-sets">Full Institute Sets</a></li>
+          <li><a href="/pages/sell-books">Sell Your Modules</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Links -->
+      <div class="footer-links">
+        <h4>Help & Support</h4>
+        <ul>
+          <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
+          <li><a href="/pages/return-policy">Return Policy</a></li>
+          <li><a href="/pages/terms">Terms of Service</a></li>
+          <li><a href="/pages/contact">Contact Support</a></li>
+          <li><a href="/pages/faq">FAQs</a></li>
+        </ul>
+      </div>
+
+      <!-- Secure Checkout Badge -->
+      <div class="footer-secure">
+        <h4>Secure Shopping</h4>
+        <div class="secure-badge">
+          {% render 'icon-shield' %}
+          <div class="secure-text">
+            <strong>100% Safe Payments</strong>
+            <span>Verified SSL Security</span>
+          </div>
+        </div>
+        <div class="payment-methods">
+          <img src="https://cdn.shopify.com/s/files/1/0554/7445/4726/files/payment-badges.png?v=1620000000" alt="Payment Methods" style="max-width: 100%; opacity: 0.8;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="footer-bottom">
+      <div class="copyright">
+        &copy; {{ 'now' | date: "%Y" }} Kotacart.com. All Rights Reserved.
+      </div>
+      <div class="footer-meta">
+        Made with ❤️ in Kota for Students
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-v3 {
+    background: #0A0A1F; /* Very deep navy/black */
+    color: #E2E8F0;
+    padding: 80px 0 40px;
+    margin-top: 60px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+
+  .brand-logo .logo-circ {
+    background: white;
+    color: #0A0A1F;
+    width: 36px;
+    height: 36px;
+  }
+
+  .brand-logo .brand-text {
+    color: white;
+    font-size: 24px;
+  }
+
+  .brand-logo .store-label {
+    color: #94A3B8;
+  }
+
+  .brand-desc {
+    color: #94A3B8;
+    line-height: 1.7;
+    font-size: 14px;
+    margin-bottom: 25px;
+    max-width: 300px;
+  }
+
+  .footer-socials {
+    display: flex;
+    gap: 12px;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .social-icon:hover {
+    background: var(--brand-purple);
+    transform: translateY(-3px);
+  }
+
+  .footer-links h4, .footer-secure h4 {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 12px;
+  }
+
+  .footer-links a {
+    color: #94A3B8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: white;
+    padding-left: 4px;
+  }
+
+  .secure-badge {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 20px;
+  }
+
+  .secure-badge svg {
+    color: #10B981;
+    width: 32px;
+    height: 32px;
+  }
+
+  .secure-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .secure-text strong {
+    font-size: 14px;
+    color: white;
+  }
+
+  .secure-text span {
+    font-size: 12px;
+    color: #64748B;
+  }
+
+  .footer-bottom {
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #64748B;
+    font-size: 13px;
+  }
+
+  @media (max-width: 991px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-v3 {
+      padding: 60px 0 100px; /* Space for bottom app bar */
+    }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      text-align: center;
+    }
+    .footer-brand, .brand-desc {
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-brand .brand-logo {
+      justify-content: center;
+    }
+    .footer-socials {
+      justify-content: center;
+    }
+    .secure-badge {
+      justify-content: center;
+      text-align: left;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Footer V3",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Footer V3"
+    }
+  ]
+}
+{% endschema %}

@@ -34,26 +34,6 @@
       {{ content_for_layout }}
     </main>
 
-    <footer class="container">
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-        <div>
-          <h3 style="color: var(--color-primary);">About Kotacart</h3>
-          <p>India's leading marketplace for verified, high-quality pre-owned JEE, NEET, and Foundation study materials.</p>
-        </div>
-        <div>
-          <h3 style="color: var(--color-primary);">Quick Links</h3>
-          <a href="/pages/shipping-policy" style="display: block; margin-bottom: 5px;">Shipping Policy</a>
-          <a href="/pages/return-policy" style="display: block; margin-bottom: 5px;">Return Policy</a>
-          <a href="/pages/contact" style="display: block; margin-bottom: 5px;">Contact Us</a>
-        </div>
-        <div>
-          <h3 style="color: var(--color-primary);">Follow Us</h3>
-          <p>Join our community of toppers on Telegram and WhatsApp.</p>
-        </div>
-      </div>
-      <div style="border-top: 1px solid #EEE; margin-top: 40px; padding-top: 20px; text-align: center; color: #999;">
-        &copy; {{ 'now' | date: "%Y" }}, Kotacart.com. Powered by Shopify.
-      </div>
-    </footer>
+    {% section 'footer' %}
   </body>
 </html>
