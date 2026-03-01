@@ -9,22 +9,16 @@
     {% endfor %}
     
     {% if is_trending %}
-      <div class="pw-trending-ribbon">Trending</div>
+      <div class="pw-badge-trending">Trending</div>
     {% endif %}
 
-    <a href="{{ product.url }}">
+    <a href="{{ product.url }}" class="pw-card-img-link">
       {% if product.featured_image %}
         <img src="{{ product.featured_image | img_url: '500x500' }}" alt="{{ product.title | escape }}" class="pw-card-image" loading="lazy">
       {% else %}
         <div class="pw-card-placeholder"></div>
       {% endif %}
     </a>
-    <form method="post" action="/cart/add" class="pw-add-form">
-      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-      <button type="submit" class="pw-add-btn" {% unless product.available %}disabled{% endunless %}>
-        {% if product.available %}ADD{% else %}OUT{% endif %}
-      </button>
-    </form>
   </div>
   
   <div class="pw-card-info">
@@ -32,38 +26,45 @@
       <h3 class="pw-card-title">{{ product.title }}</h3>
     </a>
     
-    {% assign show_edition = false %}
-    {% for tag in product.tags %}
-      {% assign lowercase_tag = tag | downcase %}
-      {% if lowercase_tag contains 'edition' or lowercase_tag contains '2026' or lowercase_tag contains '2025' or lowercase_tag contains '2024' %}
-        <div class="pw-card-tag">{{ tag | capitalize }}</div>
-        {% assign show_edition = true %}
-        {% break %}
-      {% endif %}
-    {% endfor %}
-    
-    {% if show_edition == false %}
-      <div class="pw-card-tag">Latest Edition</div>
-    {% endif %}
-
-    <div class="pw-price-row">
-      <div class="pw-price-left">
-        <span class="pw-current-price">{{ product.price | money }}</span>
-        {% if product.compare_at_price > product.price %}
-          {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
-          <span class="pw-discount">({{ discount }}% OFF)</span>
+    <div class="pw-card-meta">
+      {% assign show_edition = false %}
+      {% for tag in product.tags %}
+        {% assign lowercase_tag = tag | downcase %}
+        {% if lowercase_tag contains 'edition' or lowercase_tag contains '2026' or lowercase_tag contains '2025' or lowercase_tag contains '2024' %}
+          <span class="pw-card-tag">{{ tag | capitalize }}</span>
+          {% assign show_edition = true %}
+          {% break %}
         {% endif %}
-      </div>
-      
-      <!-- PW Style Rating Badge -->
+      {% endfor %}
+      {% if show_edition == false %}
+        <span class="pw-card-tag">Latest Edition</span>
+      {% endif %}
       <div class="pw-rating-badge">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right:2px"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
         4.8
       </div>
     </div>
-    {% if product.compare_at_price > product.price %}
-      <div class="pw-original-price">{{ product.compare_at_price | money }}</div>
-    {% endif %}
+
+    <div class="pw-price-block">
+      <span class="pw-current-price">{{ product.price | money }}</span>
+      {% if product.compare_at_price > product.price %}
+        <span class="pw-original-price">{{ product.compare_at_price | money }}</span>
+        {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
+        <span class="pw-discount">{{ discount }}% OFF</span>
+      {% endif %}
+    </div>
+
+    <form method="post" action="/cart/add" class="pw-add-form">
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+      <button type="submit" class="pw-add-btn" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4H6z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          Add to Bag
+        {% else %}
+          Out of Stock
+        {% endif %}
+      </button>
+    </form>
   </div>
 </div>
 
@@ -71,193 +72,190 @@
   .pw-card {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    transition: all 0.2s ease-in-out;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #e8eaed;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
     position: relative;
+    height: 100%;
   }
 
   .pw-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
     transform: translateY(-2px);
   }
 
-  .pw-trending-ribbon {
+  /* Trending ribbon */
+  .pw-badge-trending {
     position: absolute;
-    top: 0;
-    left: -8px;
-    background: #16a34a; /* Vibrant PW green */
+    top: 8px;
+    left: 0;
+    background: #16a34a;
     color: white;
-    padding: 4px 12px;
-    font-size: 11px;
+    padding: 3px 10px 3px 8px;
+    font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    z-index: 10;
     border-radius: 0 4px 4px 0;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    z-index: 10;
   }
 
-  /* Ribbon fold effect */
-  .pw-trending-ribbon::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    border-width: 8px 8px 0 0;
-    border-style: solid;
-    border-color: #14532d transparent transparent transparent; /* Darker green shade */
-  }
-
+  /* Image area */
   .pw-card-image-wrapper {
     position: relative;
-    padding: 10px;
-    background: #fff;
-    border-radius: 12px 12px 0 0;
+    background: #f8f9fa;
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .pw-card-img-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
   }
 
   .pw-card-image {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    transition: transform 0.4s ease;
+    transition: transform 0.35s ease;
   }
 
   .pw-card:hover .pw-card-image {
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
 
   .pw-card-placeholder {
     width: 100%;
-    height: 100%;
+    height: 140px;
     background: #f3f4f6;
-    border-radius: 8px;
   }
 
-  .pw-add-form {
-    position: absolute;
-    bottom: -15px; /* Overlap the border between image and text */
-    right: 16px;
-    z-index: 10;
-  }
-
-  .pw-add-btn {
-    background: #f4f3ff; /* Very pale purple matching the mockup */
-    color: #5b4df3; /* PW Purple */
-    border: 1px solid #5b4df3;
-    border-radius: 6px;
-    padding: 6px 20px;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    transition: all 0.2s ease;
-  }
-
-  .pw-add-btn:hover:not([disabled]) {
-    background: var(--brand-purple, #5b4df3);
-    color: white;
-    transform: scale(1.02);
-  }
-
-  .pw-add-btn[disabled] {
-    background: #f3f4f6;
-    color: #9ca3af;
-    border-color: #d1d5db;
-    cursor: not-allowed;
-    font-size: 14px;
-    padding: 8px 12px;
-  }
-
+  /* Info section */
   .pw-card-info {
-    padding: 12px 12px 10px 12px;
+    padding: 10px 12px 12px;
     display: flex;
     flex-direction: column;
+    gap: 6px;
     flex-grow: 1;
   }
 
-  .pw-card-title-link {
-    text-decoration: none;
-    color: #212529;
-  }
+  .pw-card-title-link { text-decoration: none; color: inherit; }
 
   .pw-card-title {
     font-size: 13px;
     font-weight: 600;
     line-height: 1.4;
-    margin: 0 0 8px 0;
+    margin: 0;
+    color: #1a1a1a;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 36px;
-    color: #212529;
     transition: color 0.2s;
   }
 
-  .pw-card-title-link:hover .pw-card-title {
-    color: #5b4df3;
-  }
+  .pw-card-title-link:hover .pw-card-title { color: #5b4df3; }
 
-  .pw-card-tag {
-    background: #eaf3ff; /* Light blue tint */
-    color: #0b5ee6; /* Deep blue */
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 12px;
-    align-self: flex-start;
-  }
-
-  .pw-price-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 2px;
-  }
-
-  .pw-price-left {
+  /* Tag + rating inline */
+  .pw-card-meta {
     display: flex;
     align-items: center;
     gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .pw-card-tag {
+    background: #eef3ff;
+    color: #3b5bdb;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    white-space: nowrap;
   }
 
   .pw-rating-badge {
     display: flex;
     align-items: center;
-    background: #16a34a; /* Matches PW green */
+    gap: 2px;
+    background: #16a34a;
     color: white;
-    padding: 3px 6px;
+    padding: 2px 6px;
     border-radius: 4px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
+    margin-left: auto;
+  }
+
+  /* Price block */
+  .pw-price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+    flex-wrap: wrap;
   }
 
   .pw-current-price {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
-    color: #212529;
-    letter-spacing: -0.2px;
-  }
-
-  .pw-discount {
-    font-size: 12px;
-    font-weight: 700;
-    color: #16a34a; /* Vibrant green */
+    color: #111;
+    letter-spacing: -0.3px;
   }
 
   .pw-original-price {
-    font-size: 13px;
+    font-size: 12px;
     color: #9ca3af;
     text-decoration: line-through;
-    font-weight: 500;
+    font-weight: 400;
+  }
+
+  .pw-discount {
+    font-size: 11px;
+    font-weight: 700;
+    color: #16a34a;
+  }
+
+  /* Add to Bag button — inside info, full width */
+  .pw-add-form { margin-top: auto; }
+
+  .pw-add-btn {
+    width: 100%;
+    background: #f0eeff;
+    color: #5b4df3;
+    border: 1px solid #c7c0ff;
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+
+  .pw-add-btn:hover:not([disabled]) {
+    background: #5b4df3;
+    color: white;
+    border-color: #5b4df3;
+  }
+
+  .pw-add-btn[disabled] {
+    background: #f3f4f6;
+    color: #9ca3af;
+    border-color: #e5e7eb;
+    cursor: not-allowed;
   }
 </style>
