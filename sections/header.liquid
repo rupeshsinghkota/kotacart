@@ -190,6 +190,9 @@
     <div class="mobile-nav-divider"></div>
     <a href="/pages/sell-books" class="mobile-nav-link" style="color:var(--brand-purple); font-weight:700;">{% render 'icon-sell' %} Sell Modules</a>
   </div>
+  <div class="mobile-nav-footer">
+    <a href="/account/login" class="mobile-login-btn">Login / Sign Up</a>
+  </div>
 </div>
 
 <style>
@@ -337,6 +340,25 @@
     margin: 10px 20px;
   }
 
+  .mobile-nav-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+    margin-top: auto; /* Pushes to bottom if drawer height is 100% */
+  }
+
+  .mobile-login-btn {
+    display: block;
+    width: 100%;
+    background: #5b4df3; /* PW Purple Solid */
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    text-align: center;
+    transition: background 0.2s;
+  }
 
   @media (max-width: 768px) {
     .header-grid {
