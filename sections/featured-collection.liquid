@@ -128,15 +128,24 @@
     .featured-collection-v3 {
       margin: 20px auto;
     }
+    /* Switch to 2-column grid on mobile */
     .products-scroller {
-      gap: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      overflow-x: visible;
+      padding: 0 5px 10px;
+      margin: 0;
+      scroll-snap-type: none;
     }
     .product-scroller-item {
-      flex: 0 0 210px;
+      flex: none;
+      min-width: unset;
+      width: 100%;
     }
     .collection-header-v3 {
        padding: 0 5px;
-       margin-bottom: 16px;
+       margin-bottom: 14px;
     }
     .collection-title-v3 {
        font-size: 20px;
