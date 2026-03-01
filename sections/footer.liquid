@@ -26,28 +26,31 @@
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <div class="footer-links">
-        <h4>Student Shop</h4>
-        <ul>
-          <li><a href="/collections/jee-modules">JEE Prep Books</a></li>
-          <li><a href="/collections/neet-modules">NEET Prep Books</a></li>
-          <li><a href="/collections/school">Foundation Modules</a></li>
-          <li><a href="/collections/full-sets">Full Institute Sets</a></li>
-          <li><a href="/pages/sell-books">Sell Your Modules</a></li>
-        </ul>
-      </div>
+      <!-- Links Wrapper for Mobile Grid -->
+      <div class="footer-links-wrapper">
+        <!-- Quick Links -->
+        <div class="footer-links">
+          <h4>Student Shop</h4>
+          <ul>
+            <li><a href="/collections/jee-modules">JEE Prep Books</a></li>
+            <li><a href="/collections/neet-modules">NEET Prep Books</a></li>
+            <li><a href="/collections/school">Foundation Modules</a></li>
+            <li><a href="/collections/full-sets">Full Institute Sets</a></li>
+            <li><a href="/pages/sell-books">Sell Your Modules</a></li>
+          </ul>
+        </div>
 
-      <!-- Support Links -->
-      <div class="footer-links">
-        <h4>Help & Support</h4>
-        <ul>
-          <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
-          <li><a href="/pages/return-policy">Return Policy</a></li>
-          <li><a href="/pages/terms">Terms of Service</a></li>
-          <li><a href="/pages/contact">Contact Support</a></li>
-          <li><a href="/pages/faq">FAQs</a></li>
-        </ul>
+        <!-- Support Links -->
+        <div class="footer-links">
+          <h4>Help & Support</h4>
+          <ul>
+            <li><a href="/pages/shipping-policy">Shipping Policy</a></li>
+            <li><a href="/pages/return-policy">Return Policy</a></li>
+            <li><a href="/pages/terms">Terms of Service</a></li>
+            <li><a href="/pages/contact">Contact Support</a></li>
+            <li><a href="/pages/faq">FAQs</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- Secure Checkout Badge -->
@@ -228,32 +231,60 @@
 
   @media (max-width: 768px) {
     .footer-v3 {
-      padding: 60px 0 100px; /* Space for bottom app bar */
+      padding: 40px 0 100px; /* Space for bottom app bar */
     }
     .footer-grid {
       grid-template-columns: 1fr;
-      gap: 40px;
-      text-align: center;
+      gap: 30px;
     }
-    .footer-brand, .brand-desc {
-      max-width: 100%;
+    
+    /* Create a 2-column layout for the links specifically */
+    .footer-links-wrapper {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 20px;
+       text-align: left;
+    }
+
+    .footer-brand, .footer-secure {
+      text-align: center;
+      border-bottom: 1px solid #E5E7EB;
+      padding-bottom: 30px;
+    }
+
+    .brand-desc {
       margin-left: auto;
       margin-right: auto;
     }
-    .footer-brand .brand-logo {
-      justify-content: center;
-    }
+
     .footer-socials {
       justify-content: center;
     }
+
     .secure-badge {
-      justify-content: center;
-      text-align: left;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
     }
+
     .footer-bottom {
       flex-direction: column;
-      gap: 15px;
+      gap: 10px;
       text-align: center;
+      padding-top: 25px;
+    }
+    
+    .footer-links h4 {
+      margin-bottom: 15px;
+      font-size: 13px;
+    }
+    
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+    
+    .footer-links a {
+      font-size: 13px;
     }
   }
 </style>
