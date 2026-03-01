@@ -11,6 +11,11 @@
   <!-- Top Row: Logo, Search, Utility -->
   <div class="header-top-row" id="HeaderTopRow">
     <div class="container header-grid">
+        <!-- Mobile Hamburger Icon -->
+        <button class="mobile-menu-toggle" id="MobileMenuToggle" aria-label="Open Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
         <div class="header-logo-container">
           <a href="/" class="brand-logo">
             <span class="logo-circ">K</span>
@@ -39,8 +44,8 @@
     </div>
   </div>
 
-  <!-- Bottom Row: Categories -->
-  <div class="header-bottom-row">
+  <!-- Bottom Row: Categories (Desktop Only) -->
+  <div class="header-bottom-row desktop-only-nav">
     <div class="container category-nav-container">
       <nav class="category-nav">
         <ul>
@@ -118,7 +123,7 @@
   </div>
 </div>
 
-<script>
+  // Sticky Header Logic
   const topRow = document.getElementById('HeaderTopRow');
   const placeholder = document.createElement('div');
   
@@ -138,7 +143,51 @@
       }
     }
   });
+
+  // Mobile Menu Logic
+  const mobileToggle = document.getElementById('MobileMenuToggle');
+  const mobileDrawer = document.getElementById('MobileNavDrawer');
+  const mobileClose = document.getElementById('MobileNavClose');
+  const mobileOverlay = document.getElementById('MobileNavOverlay');
+
+  function openMobileMenu() {
+    mobileDrawer.classList.add('is-open');
+    mobileOverlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileMenu() {
+    mobileDrawer.classList.remove('is-open');
+    mobileOverlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  if (mobileToggle) mobileToggle.addEventListener('click', openMobileMenu);
+  if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
+  if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
 </script>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-overlay" id="MobileNavOverlay"></div>
+<div class="mobile-nav-drawer" id="MobileNavDrawer">
+  <div class="mobile-nav-header">
+    <span class="brand-logo" style="margin:0;">
+      <span class="logo-circ">K</span>
+      <span class="brand-text">Kotacart</span>
+    </span>
+    <button class="mobile-nav-close" id="MobileNavClose">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="mobile-nav-body">
+    <a href="/collections/jee-modules" class="mobile-nav-link">{% render 'icon-jee' %} JEE Prep Materials</a>
+    <a href="/collections/neet-modules" class="mobile-nav-link">{% render 'icon-neet' %} NEET Prep Materials</a>
+    <a href="/collections/school" class="mobile-nav-link">{% render 'icon-foundation' %} Foundation</a>
+    <a href="/collections/full-sets" class="mobile-nav-link">{% render 'icon-orders' %} Full Sets</a>
+    <div class="mobile-nav-divider"></div>
+    <a href="/pages/sell-books" class="mobile-nav-link" style="color:var(--brand-purple); font-weight:700;">{% render 'icon-sell' %} Sell Modules</a>
+  </div>
+</div>
 
 <style>
   :root {
@@ -197,33 +246,134 @@
   }
 
   .header-grid {
-    display: grid;
-    grid-template-columns: 220px 1fr 300px;
+    display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: space-between;
+    gap: 30px;
   }
+
+  .header-search-container {
+    flex-grow: 1;
+    max-width: 600px;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    color: #111827;
+  }
+
+  /* --- Mobile Drawer Styles --- */
+  .mobile-nav-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 2999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+  .mobile-nav-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .mobile-nav-drawer {
+    position: fixed;
+    top: 0; left: -300px; bottom: 0;
+    width: 280px;
+    background: white;
+    z-index: 3000;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .mobile-nav-drawer.is-open {
+    transform: translateX(300px);
+  }
+
+  .mobile-nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .mobile-nav-close {
+    background: none; border: none; font-size: 24px; cursor: pointer; color: #666;
+  }
+
+  .mobile-nav-body {
+    padding: 20px 0;
+    overflow-y: auto;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .mobile-nav-link svg {
+    width: 20px; height: 20px; color: #666;
+  }
+
+  .mobile-nav-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 10px 20px;
+  }
+
 
   @media (max-width: 768px) {
     .header-grid {
-      grid-template-columns: 1fr auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto; /* Hamburger | Logo | Utility */
+      grid-template-rows: auto auto; /* Row 1: Logo/Icons, Row 2: Search */
       gap: 15px;
-      padding: 5px 0;
+      padding: 5px 10px;
     }
-    .header-search-container {
-      grid-row: 2;
-      grid-column: 1 / -1;
-      width: 100%;
+    .mobile-menu-toggle {
+      display: block;
+      grid-row: 1;
+      grid-column: 1;
     }
-    .header-utility-container {
+    .header-logo-container {
       grid-row: 1;
       grid-column: 2;
     }
+    .header-utility-container {
+      grid-row: 1;
+      grid-column: 3;
+      gap: 15px;
+    }
+    .header-search-container {
+      grid-row: 2;
+      grid-column: 1 / -1; /* Stretch across entire bottom */
+      width: 100%;
+      max-width: 100%;
+    }
+    
     .utility-item span {
       display: none;
     }
     .btn-login-v3 {
-      padding: 6px 15px;
-      font-size: 13px;
+      display: none; /* Usually hidden on mobile in PW, kept cleaner */
+    }
+    
+    /* Hide the horizontal scrolling bottom nav on mobile */
+    .desktop-only-nav {
+      display: none !important;
     }
   }
 
