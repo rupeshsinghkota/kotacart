@@ -3,45 +3,45 @@
     <div class="trust-grid">
       <!-- Item 1: Verified -->
       <div class="trust-item">
-        <div class="trust-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+        <div class="trust-icon icon-verified">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
         </div>
         <div class="trust-text">
-          <h3>Verified<br>Quality</h3>
-          <p>Hand-inspected by experts</p>
+          <h3>Verified Quality</h3>
+          <p>Hand-inspected</p>
         </div>
       </div>
       
       <!-- Item 2: Fast Delivery -->
       <div class="trust-item">
-        <div class="trust-icon" style="animation-delay: 0.2s;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        <div class="trust-icon icon-delivery">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
         </div>
         <div class="trust-text">
-          <h3>Fast<br>Delivery</h3>
-          <p>Shipping within 24 hours</p>
+          <h3>Fast Delivery</h3>
+          <p>Within 24 hours</p>
         </div>
       </div>
       
       <!-- Item 3: Secure -->
       <div class="trust-item">
-        <div class="trust-icon" style="animation-delay: 0.4s;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <div class="trust-icon icon-secure">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
         </div>
         <div class="trust-text">
-          <h3>Secure<br>Payment</h3>
-          <p>100% safe transactions</p>
+          <h3>Secure Payment</h3>
+          <p>100% safe checkout</p>
         </div>
       </div>
       
       <!-- Item 4: Support -->
       <div class="trust-item">
-        <div class="trust-icon" style="animation-delay: 0.6s;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+        <div class="trust-icon icon-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
         </div>
         <div class="trust-text">
-          <h3>WhatsApp<br>Support</h3>
-          <p>Real-time help for students</p>
+          <h3>WhatsApp Help</h3>
+          <p>Real-time support</p>
         </div>
       </div>
     </div>
@@ -50,11 +50,8 @@
 
 <style>
   .trust-bar {
-    background: #ffffff;
+    background: #F8F9FA; /* Off-white for section separation */
     padding: 30px 0;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03); /* Soft elevation */
-    position: relative;
-    z-index: 5;
   }
   .trust-grid {
     display: grid;
@@ -65,71 +62,92 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
   }
+  .trust-item:hover {
+    transform: translateY(-3px);
+  }
+  
   .trust-icon {
-    background: #f4f4ff; /* Brand soft purple */
-    color: #5b4df3; /* Brand strong purple */
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    animation: gentleFloat 4s ease-in-out infinite;
-    box-shadow: 0 8px 15px rgba(91, 77, 243, 0.1);
+    animation: iconHeartbeat 3s infinite ease-in-out;
   }
   
-  @keyframes gentleFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+  /* Distinct Brand Colors for Icons */
+  .icon-verified { background: #EdfbEB; color: #10B981; }
+  .icon-delivery { background: #EBF3FF; color: #3B82F6; }
+  .icon-secure   { background: #F5EBFF; color: #8B5CF6; }
+  .icon-whatsapp { background: #EAFBF0; color: #25D366; }
+
+  /* Stagger animation */
+  .trust-item:nth-child(2) .trust-icon { animation-delay: 0.5s; }
+  .trust-item:nth-child(3) .trust-icon { animation-delay: 1.0s; }
+  .trust-item:nth-child(4) .trust-icon { animation-delay: 1.5s; }
+  
+  @keyframes iconHeartbeat {
+    0%, 100% { transform: scale(1); }
+    10% { transform: scale(1.1); }
+    20% { transform: scale(1); }
   }
 
   .trust-text h3 {
-    font-size: 14px;
+    font-size: 15px;
     margin: 0;
     color: #1a1a1a;
     font-weight: 800;
     line-height: 1.2;
   }
   .trust-text p {
-    font-size: 13px;
-    margin: 2px 0 0;
-    color: #666;
+    font-size: 12px;
+    margin: 4px 0 0;
+    color: #6B7280;
   }
+
   @media (max-width: 768px) {
     .trust-bar {
-      padding: 25px 0;
+      padding: 20px 10px;
     }
     .trust-grid {
-      display: flex;
-      justify-content: space-between;
+      grid-template-columns: repeat(2, 1fr); /* Super clean 2x2 grid */
       gap: 10px;
     }
     .trust-item {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 10px;
-      flex: 1;
+      padding: 12px 10px;
+      gap: 12px;
+      flex-direction: row; /* Align icon left, text right */
+      text-align: left;
+      border-radius: 12px;
     }
     .trust-icon {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
     }
     .trust-icon svg {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
     }
     .trust-text h3 {
-      font-size: 11.5px;
-      line-height: 1.2;
-      color: #333;
-      font-weight: 700;
-      letter-spacing: -0.2px;
+      font-size: 12.5px;
+      margin-bottom: 2px;
     }
     .trust-text p {
-      display: none; /* Hide sub-descriptions on mobile to allow a clean 1-row layout */
+      display: block; /* Restored descriptions! */
+      font-size: 10.5px;
+      line-height: 1.2;
+      margin: 0;
+      color: #888;
     }
   }
 </style>
