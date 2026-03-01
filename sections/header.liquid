@@ -11,16 +11,16 @@
   <!-- Top Row: Logo, Search, Utility -->
   <div class="header-top-row" id="HeaderTopRow">
     {% if template contains 'product' %}
-      <!-- Mobile Specific Product Header -->
-      <div class="container header-grid product-header-mobile mobile-only">
-        <button class="header-back-btn" onclick="history.back()">
+      <!-- Mobile Specific Product Header (Sticky) -->
+      <div class="pm-header-mobile mobile-only">
+        <button class="pm-back-btn" onclick="history.back()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
-        <div class="header-logo-container product-title-container">
-          <span class="product-title-text">{{ product.title | truncate: 35 }}</span>
+        <div class="pm-title-container">
+          <span class="pm-title-text">{{ product.title | truncate: 50 }}</span>
         </div>
-        <div class="header-utility-container header-item-right">
-          <button class="mobile-search-btn" id="MobileSearchTrigger">
+        <div class="pm-search-container">
+          <button class="pm-search-btn" onclick="document.querySelector('.search-form-v3 input').focus();">
              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
         </div>
@@ -37,7 +37,7 @@
           </a>
         </div>
         <div class="header-search-container">
-          <form action="/search" method="get" class="search-form-v3">
+          <form action="/search" method="get" class="search-form-v3" id="DesktopSearchForm">
             <input type="search" name="q" placeholder="Search Products" aria-label="Search">
             <button type="submit">{% render 'icon-search' %}</button>
           </form>
@@ -178,28 +178,7 @@
   </div>
 </div>
 
-<script>
-  // Sticky Header Logic
-  const topRow = document.getElementById('HeaderTopRow');
-  const placeholder = document.createElement('div');
-  
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 40) {
-      if (!topRow.classList.contains('is-fixed')) {
-        placeholder.style.height = topRow.offsetHeight + 'px';
-        topRow.parentNode.insertBefore(placeholder, topRow);
-        topRow.classList.add('is-fixed');
-      }
-    } else {
-      if (topRow.classList.contains('is-fixed')) {
-        topRow.classList.remove('is-fixed');
-        if (placeholder.parentNode) {
-           placeholder.parentNode.removeChild(placeholder);
-        }
-      }
-    }
-  });
-
+  // Placeholder for any non-sticky scripts
   document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Logic
     const mobileToggle = document.getElementById('MobileMenuToggle');
@@ -278,25 +257,13 @@
 
   .header-v3 {
     background: white;
-    /* Removed global sticky to focus on top-row only */
-  }
-
-  .header-top-row.is-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2000;
-    background: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    padding: 10px 0; /* Compact mode when fixed */
   }
 
 
   .announcement-bar-v3 {
     background: #3c1e9e; /* Deeper Purple */
     color: white;
-    padding: 10px 0;
+    padding: 8px 0;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
@@ -327,8 +294,8 @@
 
 
 
-  .product-header-mobile {
-    display: flex;
+  .pm-header-mobile {
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -336,8 +303,9 @@
     padding: 0 16px;
     box-sizing: border-box;
     background: white;
+    border-bottom: 1px solid #f1f1f1;
   }
-  .header-back-btn {
+  .pm-back-btn {
     background: none;
     border: none;
     padding: 0;
@@ -345,16 +313,16 @@
     color: #000;
     display: flex;
     align-items: center;
-    width: 40px; /* Balanced width */
+    width: 40px;
   }
-  .product-title-container {
+  .pm-title-container {
     flex: 1;
     text-align: center;
     overflow: hidden;
-    padding: 0 5px;
+    padding: 0 10px;
   }
-  .product-title-text {
-    font-size: 14px; /* Slightly smaller for better fit */
+  .pm-title-text {
+    font-size: 15px;
     font-weight: 700;
     color: #111;
     white-space: nowrap;
@@ -363,12 +331,12 @@
     display: inline-block;
     max-width: 100%;
   }
-  .header-item-right {
-    width: 40px; /* Matching back button width for centering */
+  .pm-search-container {
+    width: 40px;
     display: flex;
     justify-content: flex-end;
   }
-  .mobile-search-btn {
+  .pm-search-btn {
     background: none;
     border: none;
     padding: 0;
