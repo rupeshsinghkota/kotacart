@@ -121,32 +121,36 @@
     .trust-grid {
       display: flex;
       justify-content: space-between;
-      gap: 6px;
+      gap: 4px; /* Even smaller gap */
     }
     .trust-item {
-      padding: 12px 4px;
-      gap: 8px;
-      flex-direction: column; /* Stack icon top, text bottom */
+      padding: 8px 2px; /* Minimal padding */
+      gap: 5px;
+      flex-direction: column; 
       text-align: center;
-      border-radius: 10px;
+      border-radius: 8px;
       flex: 1;
+      min-width: 0; /* Allow items to shrink aggressively */
     }
     .trust-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 28px; /* Slightly smaller icon */
+      height: 28px;
+      border-radius: 6px;
     }
     .trust-icon svg {
-      width: 16px;
-      height: 16px;
+      width: 14px;
+      height: 14px;
     }
     .trust-text h3 {
-      font-size: 10px;
+      font-size: 8px; /* Tiny font to ensure 1 row */
       margin-bottom: 0;
-      line-height: 1.2;
+      line-height: 1.1;
+      white-space: nowrap; /* Prevent wrapping */
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .trust-text p {
-      display: none; /* Hide descriptions to fit everything in 1 row */
+      display: none; 
     }
   }
 </style>
