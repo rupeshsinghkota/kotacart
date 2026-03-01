@@ -20,7 +20,7 @@
 
         <div class="header-search-container">
           <form action="/search" method="get" class="search-form-v3">
-            <input type="search" name="q" placeholder="Search for Allen, NEET Modules, PYQs..." aria-label="Search">
+            <input type="search" name="q" placeholder="Search Products" aria-label="Search">
             <button type="submit">{% render 'icon-search' %}</button>
           </form>
         </div>
@@ -198,7 +198,7 @@
 
   .header-grid {
     display: grid;
-    grid-template-columns: 200px 1fr 320px;
+    grid-template-columns: 220px 1fr 300px;
     align-items: center;
     gap: 40px;
   }
@@ -268,15 +268,14 @@
   .search-form-v3 {
     position: relative;
     width: 100%;
-    max-width: 600px;
     margin: 0 auto;
   }
   .search-form-v3 input {
     width: 100%;
     padding: 12px 20px;
     padding-right: 50px;
-    border: 1.5px solid #d1d5db;
-    border-radius: 8px;
+    border: 1px solid #d1d5db; /* Clean grey border */
+    border-radius: 6px;
     font-size: 15px;
     outline: none;
     transition: border-color 0.3s;
@@ -300,16 +299,16 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 25px;
+    gap: 30px;
   }
   .utility-item {
     text-decoration: none;
-    color: #333;
+    color: #111827; /* Darker, crisper text */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     transition: color 0.3s;
   }
@@ -322,17 +321,17 @@
     align-items: center;
   }
   .btn-login-v3 {
-    background: var(--brand-purple);
+    background: #5b4df3; /* PW Purple Solid */
     color: white;
-    padding: 10px 30px;
-    border-radius: 8px;
+    padding: 10px 24px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
     font-size: 14px;
-    transition: opacity 0.3s;
+    transition: background 0.2s;
   }
   .btn-login-v3:hover {
-    opacity: 0.9;
+    background: #4a3df0;
   }
 
   /* Category Nav - Bottom Row */

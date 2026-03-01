@@ -1,5 +1,17 @@
 <div class="pw-card">
   <div class="pw-card-image-wrapper">
+    {% assign is_trending = false %}
+    {% for tag in product.tags %}
+      {% if tag == 'Trending' or tag == 'trending' %}
+        {% assign is_trending = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if is_trending %}
+      <div class="pw-trending-ribbon">Trending</div>
+    {% endif %}
+
     <a href="{{ product.url }}">
       {% if product.featured_image %}
         <img src="{{ product.featured_image | img_url: '500x500' }}" alt="{{ product.title | escape }}" class="pw-card-image" loading="lazy">
@@ -35,11 +47,19 @@
     {% endif %}
 
     <div class="pw-price-row">
-      <span class="pw-current-price">{{ product.price | money }}</span>
-      {% if product.compare_at_price > product.price %}
-        {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
-        <span class="pw-discount">({{ discount }}% OFF)</span>
-      {% endif %}
+      <div class="pw-price-left">
+        <span class="pw-current-price">{{ product.price | money }}</span>
+        {% if product.compare_at_price > product.price %}
+          {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
+          <span class="pw-discount">({{ discount }}% OFF)</span>
+        {% endif %}
+      </div>
+      
+      <!-- PW Style Rating Badge -->
+      <div class="pw-rating-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="margin-right:2px"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"></path></svg>
+        4.8
+      </div>
     </div>
     {% if product.compare_at_price > product.price %}
       <div class="pw-original-price">{{ product.compare_at_price | money }}</div>
@@ -62,6 +82,33 @@
   .pw-card:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     transform: translateY(-2px);
+  }
+
+  .pw-trending-ribbon {
+    position: absolute;
+    top: 0;
+    left: -8px;
+    background: #16a34a; /* Vibrant PW green */
+    color: white;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Ribbon fold effect */
+  .pw-trending-ribbon::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    border-width: 8px 8px 0 0;
+    border-style: solid;
+    border-color: #14532d transparent transparent transparent; /* Darker green shade */
   }
 
   .pw-card-image-wrapper {
@@ -173,8 +220,25 @@
   .pw-price-row {
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
     margin-bottom: 2px;
+  }
+
+  .pw-price-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pw-rating-badge {
+    display: flex;
+    align-items: center;
+    background: #16a34a; /* Matches PW green */
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 800;
   }
 
   .pw-current-price {
