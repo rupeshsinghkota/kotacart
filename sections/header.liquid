@@ -383,37 +383,30 @@
   @media (max-width: 768px) {
     .header-grid {
       display: grid;
-      grid-template-columns: auto 1fr auto; /* Hamburger | Logo | Utility */
+      grid-template-columns: 1fr auto 1fr; /* Hamburger (left) | Logo (center) | Empty (right buffer) */
       grid-template-rows: auto auto; /* Row 1: Logo/Icons, Row 2: Search */
       gap: 15px;
-      padding: 5px 10px;
+      padding: 5px 15px;
     }
     .mobile-menu-toggle {
       display: block;
       grid-row: 1;
       grid-column: 1;
+      justify-self: start;
     }
     .header-logo-container {
       grid-row: 1;
       grid-column: 2;
+      justify-self: center;
     }
     .header-utility-container {
-      grid-row: 1;
-      grid-column: 3;
-      gap: 15px;
+      display: none !important; /* Hidden on mobile because Cart & Account act as a true App Bar at bottom */
     }
     .header-search-container {
       grid-row: 2;
       grid-column: 1 / -1; /* Stretch across entire bottom */
       width: 100%;
       max-width: 100%;
-    }
-    
-    .utility-item span {
-      display: none;
-    }
-    .btn-login-v3 {
-      display: none; /* Usually hidden on mobile in PW, kept cleaner */
     }
     
     /* Hide the horizontal scrolling bottom nav on mobile */
