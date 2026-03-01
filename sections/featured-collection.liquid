@@ -9,25 +9,31 @@
   </div>
   
   <div class="products-scroller">
-    {% for product in collections[section.settings.collection].products limit: section.settings.limit %}
-      <div class="product-scroller-item">
-        {% render 'product-card', product: product %}
-      </div>
-    {% else %}
+    {% assign count = 0 %}
+    {% if section.settings.collection != blank and collections[section.settings.collection].products_count > 0 %}
+      {% for product in collections[section.settings.collection].products limit: section.settings.limit %}
+        <div class="product-scroller-item">
+          {% render 'product-card', product: product %}
+        </div>
+        {% assign count = count | plus: 1 %}
+      {% endfor %}
+    {% endif %}
+
+    {% if count == 0 %}
       {% for i in (1..section.settings.limit) %}
         <div class="product-scroller-item">
           <div class="pw-card">
-            <div class="pw-card-placeholder" style="height: 250px; background: #eee;"></div>
+            <div class="pw-card-placeholder" style="height: 250px; background: #f8f9fa; display:flex; align-items:center; justify-content:center; color:#999; font-size:12px;">Link Collection</div>
             <div class="pw-card-info">
-              <h3 class="pw-card-title">Example Product Title</h3>
+              <h3 class="pw-card-title">Setup Required</h3>
               <div class="pw-price-row">
-                <span class="pw-current-price">₹2,499</span>
+                <span class="pw-current-price">₹0</span>
               </div>
             </div>
           </div>
         </div>
       {% endfor %}
-    {% endfor %}
+    {% endif %}
   </div>
 </div>
 
