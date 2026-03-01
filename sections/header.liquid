@@ -195,6 +195,26 @@
   </div>
 </div>
 
+<!-- Mobile Bottom App Bar -->
+<div class="mobile-bottom-app-bar">
+  <a href="/" class="app-bar-item">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+    <span>Home</span>
+  </a>
+  <button class="app-bar-item" onclick="document.getElementById('MobileMenuToggle').click();">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+    <span>Menu</span>
+  </button>
+  <a href="/cart" class="app-bar-item">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+    <span>Cart</span>
+  </a>
+  <a href="/account" class="app-bar-item">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+    <span>Account</span>
+  </a>
+</div>
+
 <style>
   :root {
     --brand-purple: #5b4df3; /* Inspired by PW purple but kept professional */
@@ -682,14 +702,57 @@
   }
 
 
-  .desktop-only { display: block; }
-  .mobile-only { display: none; }
+  /* --- Mobile Bottom App Bar --- */
+  .mobile-bottom-app-bar {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    background: white;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+    justify-content: space-around;
+    padding: 10px 0;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+    border-top: 1px solid #ebebeb;
+  }
+  
+  .app-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #666;
+    background: none;
+    border: none;
+    font-size: 11px;
+    font-weight: 600;
+    gap: 4px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .app-bar-item svg {
+    width: 22px; height: 22px;
+  }
+  
+  .app-bar-item:hover, .app-bar-item:active {
+    color: var(--brand-purple);
+  }
 
   @media (max-width: 768px) {
     .desktop-only { display: none; }
     .mobile-only { display: block; }
     .header-utility-container { gap: 15px; }
     .mega-menu { display: none !important; }
+    
+    .mobile-bottom-app-bar {
+      display: flex;
+    }
+    
+    /* Prevent body from hiding behind the absolute fixed bottom nav */
+    body {
+      padding-bottom: 70px !important;
+    }
   }
 </style>
 
