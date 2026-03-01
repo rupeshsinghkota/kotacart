@@ -17,11 +17,11 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
         <div class="header-logo-container product-title-container">
-          <span class="product-title-text">{{ product.title | truncate: 30 }}</span>
+          <span class="product-title-text">{{ product.title | truncate: 35 }}</span>
         </div>
-        <div class="header-utility-container">
+        <div class="header-utility-container header-item-right">
           <button class="mobile-search-btn" id="MobileSearchTrigger">
-             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
         </div>
       </div>
@@ -328,51 +328,61 @@
 
 
   .product-header-mobile {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 10px 15px;
+    justify-content: space-between;
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    box-sizing: border-box;
     background: white;
-    height: 60px;
   }
   .header-back-btn {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    color: #111827;
+    color: #000;
     display: flex;
     align-items: center;
+    width: 40px; /* Balanced width */
   }
   .product-title-container {
+    flex: 1;
+    text-align: center;
     overflow: hidden;
+    padding: 0 5px;
   }
   .product-title-text {
-    font-size: 14px;
+    font-size: 14px; /* Slightly smaller for better fit */
     font-weight: 700;
-    color: #000;
+    color: #111;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: block;
+    display: inline-block;
+    max-width: 100%;
+  }
+  .header-item-right {
+    width: 40px; /* Matching back button width for centering */
+    display: flex;
+    justify-content: flex-end;
   }
   .mobile-search-btn {
     background: none;
     border: none;
-    padding: 5px;
+    padding: 0;
     cursor: pointer;
-    color: #111827;
+    color: #000;
   }
 
   .header-top-row {
-    padding: 15px 0;
     background: white;
-    border-bottom: 1px solid #ebebeb;
-    transition: padding 0.3s ease;
+    border-bottom: 1px solid #f1f1f1;
     position: sticky;
     top: 0;
     z-index: 2000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
   }
 
   .header-grid {
