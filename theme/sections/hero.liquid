@@ -1,0 +1,226 @@
+<section class="premium-slider-hero" id="HeroSlider-{{ section.id }}">
+  <div class="slider-wrapper">
+    <!-- Slide 1: JEE -->
+    {% assign default_slide_1 = 'hero_jee.png' | asset_url %}
+    <div class="hero-slide active" data-index="0" style="background-image: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%), url('{% if section.settings.slide_1_img %}{{ section.settings.slide_1_img | image_url: width: 1600 }}{% else %}{{ default_slide_1 }}{% endif %}');">
+      <div class="container hero-slide-content">
+        <div class="slide-text">
+          <span class="slide-badge">#1 IN KOTA</span>
+          <h2 class="slide-title">WHERE IIT <br><strong>PREPARATION</strong> BEGINS</h2>
+          <p class="slide-desc">Get the exact modules used by toppers. Allen, Aakash & Resonance at 70% off.</p>
+          <a href="/collections/jee-modules" class="btn-slide">Shop Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: NEET -->
+    {% assign default_slide_2 = 'hero_neet.png' | asset_url %}
+    <div class="hero-slide" data-index="1" style="background-image: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%), url('{% if section.settings.slide_2_img %}{{ section.settings.slide_2_img | image_url: width: 1600 }}{% else %}{{ default_slide_2 }}{% endif %}');">
+      <div class="container hero-slide-content">
+        <div class="slide-text">
+          <span class="slide-badge">NEET SPECIAL</span>
+          <h2 class="slide-title">ACE THE <br><strong>NEET UG</strong> 2025</h2>
+          <p class="slide-desc">Complete Biology & Chemistry sets with hand-marked important topics.</p>
+          <a href="/collections/neet-modules" class="btn-slide">Explore NEET</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Sell -->
+    {% assign default_slide_3 = 'hero_sell.png' | asset_url %}
+    <div class="hero-slide" data-index="2" style="background-image: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 50%), url('{% if section.settings.slide_3_img %}{{ section.settings.slide_3_img | image_url: width: 1600 }}{% else %}{{ default_slide_3 }}{% endif %}');">
+      <div class="container hero-slide-content">
+        <div class="slide-text">
+          <span class="slide-badge">CASH BACK</span>
+          <h2 class="slide-title">DONE WITH EXAMS? <br><strong>SELL & EARN</strong></h2>
+          <p class="slide-desc">Turn your old modules into cash. Easy pickup across India.</p>
+          <a href="/pages/sell-books" class="btn-slide">Sell Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="slider-dots">
+    <button class="dot active" onclick="gotoSlide(0)"></button>
+    <button class="dot" onclick="gotoSlide(1)"></button>
+    <button class="dot" onclick="gotoSlide(2)"></button>
+  </div>
+</section>
+
+<style>
+  .premium-slider-hero {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    background: #f4f4f4;
+  }
+
+  .slider-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    visibility: hidden;
+    z-index: 1;
+  }
+
+  .hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
+  }
+
+  .hero-slide-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .slide-text {
+    max-width: 650px;
+    color: #1a1a1a;
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-slide.active .slide-text {
+    opacity: 1;
+  }
+
+  .slide-badge {
+    background: #000;
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: 900;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+
+  .slide-title {
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #000;
+    text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 10px rgba(255,255,255,0.7);
+  }
+  
+  .slide-title strong { color: var(--brand-purple, #5b4df3); }
+
+  .slide-desc {
+    font-size: 19px;
+    color: #111;
+    font-weight: 500;
+    margin-bottom: 30px;
+    max-width: 500px;
+    text-shadow: 0 0 15px rgba(255,255,255,1);
+  }
+
+  .btn-slide {
+    background: #fff;
+    color: #000;
+    padding: 15px 40px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 16px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    display: inline-block;
+  }
+
+  .btn-slide:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Dots */
+  .slider-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .dot.active {
+    background: #000;
+    width: 30px;
+    border-radius: 10px;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(40px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .premium-slider-hero { height: 400px; }
+    .slide-title { font-size: 32px; }
+    .slide-desc { font-size: 15px; }
+  }
+</style>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.dot');
+
+  function gotoSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = n;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  function nextSlide() {
+    let next = (currentSlide + 1) % slides.length;
+    gotoSlide(next);
+  }
+
+  setInterval(nextSlide, 5000); // Auto-scroll every 5s
+</script>
+
+{% schema %}
+{
+  "name": "Slider Hero",
+  "settings": [
+    { "type": "image_picker", "id": "slide_1_img", "label": "Slide 1 Background" },
+    { "type": "image_picker", "id": "slide_2_img", "label": "Slide 2 Background" },
+    { "type": "image_picker", "id": "slide_3_img", "label": "Slide 3 Background" }
+  ],
+  "presets": [{ "name": "Slider Hero" }]
+}
+{% endschema %}

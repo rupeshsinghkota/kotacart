@@ -1,0 +1,92 @@
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">✓</div>
+        <div class="trust-text">
+          <h3>Verified Quality</h3>
+          <p>Hand-inspected by experts</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🚚</div>
+        <div class="trust-text">
+          <h3>Fast Delivery</h3>
+          <p>Shipping within 24 hours</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">🔒</div>
+        <div class="trust-text">
+          <h3>Secure Payment</h3>
+          <p>100% safe transactions</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">💬</div>
+        <div class="trust-text">
+          <h3>WhatsApp Support</h3>
+          <p>Real-time help for students</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .trust-bar {
+    background: #F8F9FA;
+    padding: 40px 0;
+    border-bottom: 1px solid #ECEEEF;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .trust-icon {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .trust-text h3 {
+    font-size: 16px;
+    margin: 0;
+    color: var(--color-primary);
+  }
+  .trust-text p {
+    font-size: 13px;
+    margin: 2px 0 0;
+    color: #666;
+  }
+  @media (max-width: 768px) {
+    .trust-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Trust Bar"
+    }
+  ]
+}
+{% endschema %}

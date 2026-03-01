@@ -1,0 +1,173 @@
+:root {
+    --color-primary: #0A2540;
+    /* Academic Navy */
+    --color-secondary: #FFD700;
+    /* Success Gold */
+    --color-accent: #0070E0;
+    --color-background: #FFFFFF;
+    --color-text: #1A1A1A;
+    --color-text-light: #555555;
+    --font-main: 'Inter', sans-serif;
+    --header-height: 80px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-main);
+    color: var(--color-text);
+    background: var(--color-background);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header - Managed by sections/header.liquid */
+
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #153E63 100%);
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero p {
+    font-size: 20px;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.btn-gold {
+    background: var(--color-secondary);
+    color: var(--color-primary);
+    padding: 15px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.btn-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Featured Collections */
+.section-title {
+    text-align: center;
+    margin: 60px 0 40px;
+    font-size: 32px;
+    color: var(--color-primary);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.product-card {
+    border: 1px solid #EEE;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s;
+    padding: 15px;
+}
+
+.product-card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+    border-color: var(--color-accent);
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #F9F9F9;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+.product-info h3 {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 20px;
+}
+
+.compare-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Premium Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.product-image-wrapper img {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.product-card:hover .product-image-wrapper img {
+    transform: scale(1.08);
+}
+
+/* Badge Styling */
+.badge-sale {
+    background: linear-gradient(135deg, #E74C3C 0%, #C0392B 100%);
+    color: white;
+    padding: 6px 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 11px;
+    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+}
+
+
+/* Footer */
+footer {
+    background: #F8F9FA;
+    padding: 60px 0;
+    border-top: 1px solid #EEE;
+    margin-top: 80px;
+}

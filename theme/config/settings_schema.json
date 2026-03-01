@@ -1,0 +1,44 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Kotacart Premium",
+        "theme_version": "1.0.0",
+        "theme_author": "Antigravity",
+        "theme_documentation_url": "https://kotacart.com",
+        "theme_support_url": "https://kotacart.com"
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "color",
+                "id": "primary_color",
+                "label": "Primary (Navy)",
+                "default": "#0A2540"
+            },
+            {
+                "type": "color",
+                "id": "secondary_color",
+                "label": "Secondary (Gold)",
+                "default": "#FFD700"
+            },
+            {
+                "type": "color",
+                "id": "accent_color",
+                "label": "Accent (Blue)",
+                "default": "#0070E0"
+            }
+        ]
+    },
+    {
+        "name": "Typography",
+        "settings": [
+            {
+                "type": "font_picker",
+                "id": "main_font",
+                "label": "Main Font",
+                "default": "inter_n4"
+            }
+        ]
+    }
+]

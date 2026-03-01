@@ -1,0 +1,35 @@
+<div class="container search-page">
+  <h1 class="section-title">Search Results</h1>
+  
+  <div class="search-bar-large">
+    <form action="/search" method="get" role="search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search modules, institutes, or subjects...">
+      <button type="submit" class="btn-gold">Search</button>
+    </form>
+  </div>
+
+  {% if search.performed %}
+    <p class="search-count">{{ search.results_count }} results for "{{ search.terms }}"</p>
+    
+    <div class="grid">
+      {% for item in search.results %}
+        {% if item.object_type == 'product' %}
+          {% render 'product-card', product: item %}
+        {% endif %}
+      {% else %}
+        <div style="text-align: center; grid-column: 1 / -1; padding: 60px 0;">
+          <p>No results found for your search. Try different keywords.</p>
+          <a href="/collections/all" class="btn-outline">Browse All Modules</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  .search-page { padding: 60px 0; }
+  .search-bar-large { max-width: 600px; margin: 0 auto 40px; }
+  .search-bar-large form { display: flex; gap: 10px; }
+  .search-bar-large input { flex: 1; padding: 15px; border: 1px solid #DDD; border-radius: 8px; font-size: 16px; }
+  .search-count { margin-bottom: 30px; font-weight: 500; color: #666; }
+</style>

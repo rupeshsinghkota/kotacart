@@ -1,0 +1,16 @@
+{
+    "general": {
+        "cart": {
+            "item_added": "Item added to basket",
+            "checkout": "Checkout"
+        },
+        "search": {
+            "placeholder": "Search modules...",
+            "submit": "Search"
+        },
+        "products": {
+            "add_to_cart": "Add to Basket",
+            "sold_out": "Sold Out"
+        }
+    }
+}

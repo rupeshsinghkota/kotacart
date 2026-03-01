@@ -1,0 +1,78 @@
+<div class="featured-collection container">
+  <h2 class="section-title">{{ section.settings.title | default: "Trending Modules" }}</h2>
+  
+  <div class="grid">
+    {% for product in collections[section.settings.collection].products limit: section.settings.limit %}
+      {% render 'product-card', product: product %}
+    {% else %}
+      {% for i in (1..section.settings.limit) %}
+        <div class="product-card">
+          <div class="product-image-placeholder" style="height: 250px; background: #eee;"></div>
+          <h3>Example Product Title</h3>
+          <span class="price">₹2,499</span>
+        </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  {% if section.settings.show_view_all %}
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="{{ collections[section.settings.collection].url }}" class="btn-outline">View All Products</a>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+  .btn-outline {
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 12px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover {
+    background: var(--color-primary);
+    color: white;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Trending Modules"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 4,
+      "max": 12,
+      "step": 4,
+      "label": "Products to show",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View All' button",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}

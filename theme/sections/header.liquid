@@ -1,0 +1,523 @@
+<div class="announcement-bar-v3">
+  <div class="container announcement-content">
+    <span class="desktop-only">🔥 BIG SAVINGS: Use Code <strong>KOTA10</strong> for extra 10% Off!</span>
+    <span class="mobile-only">🔥 Code <strong>KOTA10</strong>: 10% Off!</span>
+    <span class="announcement-meta desktop-only">Free Shipping on All Kota Modules | COD Available</span>
+  </div>
+</div>
+
+
+<div class="header-v3">
+  <!-- Top Row: Logo, Search, Utility -->
+  <div class="header-sticky-wrapper" id="MainHeaderWrapper">
+    <div class="header-top-row">
+      <div class="container header-grid">
+        <div class="header-logo-container">
+          <a href="/" class="brand-logo">
+            <span class="logo-circ">K</span>
+            <span class="brand-text">Kotacart <span class="store-label">Store</span></span>
+          </a>
+        </div>
+
+        <div class="header-search-container">
+          <form action="/search" method="get" class="search-form-v3">
+            <input type="search" name="q" placeholder="Search for Allen, NEET Modules, PYQs..." aria-label="Search">
+            <button type="submit">{% render 'icon-search' %}</button>
+          </form>
+        </div>
+
+        <div class="header-utility-container">
+          <a href="/account" class="utility-item">
+            <div class="utility-icon">{% render 'icon-orders' %}</div>
+            <span>My Orders</span>
+          </a>
+          <a href="/cart" class="utility-item">
+            <div class="utility-icon">{% render 'icon-cart' %}</div>
+            <span>My Bag</span>
+          </a>
+          <a href="/account/login" class="btn-login-v3">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Row: Categories -->
+  <div class="header-bottom-row">
+    <div class="container category-nav-container">
+      <nav class="category-nav">
+        <ul>
+          <li class="has-dropdown">
+            <a href="/collections/jee-modules">
+              <span class="mobile-icon">{% render 'icon-jee' %}</span>
+              JEE Prep {% render 'icon-chevron-down' %}
+            </a>
+            <div class="mega-menu">
+              <div class="mega-grid">
+                <div class="mega-column">
+                  <h4 class="mega-head">JEE Batch Wise <span class="arrow-right">→</span></h4>
+                  <a href="/collections/jee-modules-11th">11th Nurture Modules</a>
+                  <a href="/collections/jee-modules-12th">12th Enthuse Modules</a>
+                  <a href="/collections/jee-modules-dropper">Dropper Leader Modules</a>
+                  <a href="/collections/jee-modules">All JEE Materials</a>
+                </div>
+                <div class="mega-column">
+                  <h4 class="mega-head">Top Institutes <span class="arrow-right">→</span></h4>
+                  <a href="/collections/allen-jee">Allen Career Institute</a>
+                  <a href="/collections/aakash-jee">Aakash Institute</a>
+                  <a href="/collections/resonance-jee">Resonance Kota</a>
+                  <a href="/collections/pw-jee">Physics Wallah (PW)</a>
+                  <a href="/collections/motion-jee">Motion Education</a>
+                  <a href="/collections/unacademy-jee">Unacademy Center</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="has-dropdown">
+            <a href="/collections/neet-modules">
+              <span class="mobile-icon">{% render 'icon-neet' %}</span>
+              NEET Prep {% render 'icon-chevron-down' %}
+            </a>
+            <div class="mega-menu">
+              <div class="mega-grid">
+                <div class="mega-column">
+                  <h4 class="mega-head">NEET Batch Wise <span class="arrow-right">→</span></h4>
+                  <a href="/collections/neet-modules-11th">11th Nurture Modules</a>
+                  <a href="/collections/neet-modules-12th">12th Enthuse Modules</a>
+                  <a href="/collections/neet-modules-dropper">Dropper Leader Modules</a>
+                  <a href="/collections/neet-modules">All NEET Materials</a>
+                </div>
+                <div class="mega-column">
+                  <h4 class="mega-head">Top Institutes <span class="arrow-right">→</span></h4>
+                  <a href="/collections/allen-neet">Allen Professional</a>
+                  <a href="/collections/aakash-neet">Aakash (Byju's)</a>
+                  <a href="/collections/pw-neet">PW (Physics Wallah)</a>
+                  <a href="/collections/unacademy-neet">Unacademy Center</a>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="/collections/school">
+              <span class="mobile-icon">{% render 'icon-foundation' %}</span>
+              Foundation
+            </a>
+          </li>
+          <li>
+            <a href="/collections/full-sets">
+              <span class="mobile-icon">{% render 'icon-orders' %}</span>
+              Full Sets
+            </a>
+          </li>
+          <li>
+            <a href="/pages/sell-books" class="nav-highlight">
+              <span class="mobile-icon">{% render 'icon-sell' %}</span>
+              Sell Modules
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple Sticky Top Row
+  window.addEventListener('scroll', function() {
+    const header = document.getElementById('MainHeaderWrapper');
+    if (window.scrollY > 40) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  });
+</script>
+
+
+
+
+<style>
+  :root {
+    --brand-purple: #5b4df3; /* Inspired by PW purple but kept professional */
+    --light-gray-bg: #f8f9fa;
+  }
+
+  .header-sticky-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: white;
+    transition: box-shadow 0.3s ease;
+  }
+  .header-sticky-wrapper.is-scrolled {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  }
+
+  .announcement-bar-v3 {
+    background: #473dc1; /* Slightly darker purple for high contrast */
+    color: white;
+    padding: 8px 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .announcement-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .announcement-meta {
+    opacity: 0.8;
+    font-weight: 400;
+  }
+
+  .header-v3 {
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+  }
+
+  /* Compact Mode on Scroll */
+  .header-sticky-wrapper.is-scrolled .header-top-row {
+    padding: 8px 0;
+  }
+  .header-sticky-wrapper.is-scrolled .brand-text {
+    font-size: 18px;
+  }
+  .header-sticky-wrapper.is-scrolled .logo-circ {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+
+
+  .header-top-row {
+    padding: 15px 0;
+    background: white;
+    border-bottom: 1px solid #ebebeb;
+    transition: padding 0.3s ease;
+  }
+
+  .header-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 320px;
+    align-items: center;
+    gap: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .header-grid {
+      grid-template-columns: 1fr auto;
+      gap: 15px;
+      padding: 5px 0;
+    }
+    .header-search-container {
+      grid-row: 2;
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+    .header-utility-container {
+      grid-row: 1;
+      grid-column: 2;
+    }
+    .utility-item span {
+      display: none;
+    }
+    .btn-login-v3 {
+      padding: 6px 15px;
+      font-size: 13px;
+    }
+  }
+
+  /* Logo */
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+  @media (max-width: 480px) {
+    .brand-text { font-size: 16px; }
+    .store-label { display: none; }
+  }
+
+  .logo-circ {
+    background: #000;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+  }
+  .brand-text {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+  }
+  .store-label {
+    font-weight: 400;
+    color: #666;
+    font-size: 16px;
+    margin-left: 5px;
+  }
+
+  /* Search Bar - Center */
+  .search-form-v3 {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .search-form-v3 input {
+    width: 100%;
+    padding: 12px 20px;
+    padding-right: 50px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .search-form-v3 input:focus {
+    border-color: var(--brand-purple);
+  }
+  .search-form-v3 button {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+  }
+
+  /* Utility Icons */
+  .header-utility-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 25px;
+  }
+  .utility-item {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    transition: color 0.3s;
+  }
+  .utility-item:hover {
+    color: var(--brand-purple);
+  }
+  .utility-icon {
+    height: 24px;
+    display: flex;
+    align-items: center;
+  }
+  .btn-login-v3 {
+    background: var(--brand-purple);
+    color: white;
+    padding: 10px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    transition: opacity 0.3s;
+  }
+  .btn-login-v3:hover {
+    opacity: 0.9;
+  }
+
+  /* Category Nav - Bottom Row */
+  .header-bottom-row {
+    background: #fff;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .category-nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center correctly on desktop */
+  }
+
+  .category-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .header-bottom-row {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      justify-content: flex-start;
+    }
+    .header-bottom-row::-webkit-scrollbar {
+      display: none;
+    }
+    .category-nav-container {
+      justify-content: flex-start;
+    }
+    .category-nav ul {
+      padding: 10px 20px;
+    }
+    .category-nav a {
+      font-size: 13px;
+      background: #f0f0ff;
+      padding: 8px 16px;
+      border-radius: 25px;
+      border: 1px solid #e0e0ff;
+    }
+    .has-dropdown .mega-menu {
+      display: none !important; 
+    }
+  }
+
+
+  .category-nav a {
+    text-decoration: none;
+    color: #444;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s;
+  }
+  .category-nav a:hover {
+    color: var(--brand-purple);
+  }
+  /* Dropdown / Mega Menu */
+  .has-dropdown {
+    position: relative;
+  }
+
+  .has-dropdown:hover .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    background: white;
+    width: 800px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border-radius: 0 0 12px 12px;
+    padding: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(15px);
+    transition: all 0.25s ease-out;
+    z-index: 2000;
+    border: 1px solid #ebebeb;
+    border-top: 4px solid var(--brand-purple);
+  }
+
+  .mega-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+  }
+
+  .mega-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px !important;
+    text-transform: none !important;
+    color: #1a1a1a !important;
+    letter-spacing: 0 !important;
+    font-weight: 800 !important;
+    margin-bottom: 20px !important;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+  }
+
+  .arrow-right {
+    color: #999;
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+
+  .mega-head:hover .arrow-right {
+    transform: translateX(5px);
+    color: var(--brand-purple);
+  }
+
+  .mega-column a {
+    display: block;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #555;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .mega-column a:hover {
+    color: var(--brand-purple);
+    transform: translateX(3px);
+  }
+
+  .mobile-icon {
+    display: none;
+    line-height: 0;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-icon {
+        display: block;
+        color: var(--brand-purple);
+    }
+  }
+
+  .nav-highlight {
+    color: var(--brand-purple) !important;
+    background: #f4f4ff !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    border: 1px dashed var(--brand-purple) !important;
+    font-weight: 700;
+  }
+
+
+  .desktop-only { display: block; }
+  .mobile-only { display: none; }
+
+  @media (max-width: 768px) {
+    .desktop-only { display: none; }
+    .mobile-only { display: block; }
+    .header-utility-container { gap: 15px; }
+    .mega-menu { display: none !important; }
+  }
+</style>
+
+
+{% schema %}
+{
+  "name": "Header V3",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Header V3"
+    }
+  ]
+}
+{% endschema %}

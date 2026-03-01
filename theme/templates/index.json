@@ -1,0 +1,29 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {
+                "heading": "Your JEE & NEET Success Starts Here",
+                "subheading": "Premium Kota Modules at up to 70% Off. Verified quality, fast shipping.",
+                "button_label": "Shop Now",
+                "button_link": "/collections/all"
+            }
+        },
+        "trust": {
+            "type": "trust-bar",
+            "settings": {}
+        },
+        "trending": {
+            "type": "featured-collection",
+            "settings": {
+                "title": "Trending JEE & NEET Sets",
+                "limit": 8
+            }
+        }
+    },
+    "order": [
+        "hero",
+        "trust",
+        "trending"
+    ]
+}

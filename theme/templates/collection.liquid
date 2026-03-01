@@ -1,0 +1,54 @@
+<div class="container collection-header">
+  <h1 class="section-title">{{ collection.title }}</h1>
+  {% if collection.description != blank %}
+    <div class="collection-description">{{ collection.description }}</div>
+  {% endif %}
+</div>
+
+<div class="container container-collection">
+  <div class="collection-layout">
+    <aside class="collection-sidebar">
+      <h3>Filters</h3>
+      <div class="filter-group">
+        <h4>Category</h4>
+        <ul>
+          <li><a href="/collections/jee-modules">JEE Modules</a></li>
+          <li><a href="/collections/neet-modules">NEET Modules</a></li>
+          <li><a href="/collections/foundation">Foundation</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <div class="collection-main">
+      <div class="grid">
+        {% for product in collection.products %}
+          {% render 'product-card', product: product %}
+        {% else %}
+          <p>No products found in this collection.</p>
+        {% endfor %}
+      </div>
+      
+      {% if paginate.pages > 1 %}
+        <div class="pagination">
+          {{ paginate | default_pagination }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+  .collection-header { text-align: center; margin: 40px 0; }
+  .collection-layout { display: grid; grid-template-columns: 250px 1fr; gap: 40px; margin-bottom: 60px; }
+  .collection-sidebar h3 { font-size: 20px; color: var(--color-primary); margin-bottom: 25px; border-bottom: 2px solid var(--color-secondary); padding-bottom: 10px; display: inline-block; }
+  .filter-group h4 { font-size: 16px; margin: 20px 0 10px; color: #333; }
+  .filter-group ul { list-style: none; padding: 0; }
+  .filter-group li { margin-bottom: 8px; }
+  .filter-group a { text-decoration: none; color: #666; font-size: 14px; transition: color 0.3s; }
+  .filter-group a:hover { color: var(--color-accent); }
+  
+  @media (max-width: 768px) {
+    .collection-layout { grid-template-columns: 1fr; }
+    .collection-sidebar { display: none; }
+  }
+</style>
