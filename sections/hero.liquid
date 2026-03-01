@@ -187,58 +187,54 @@
 
   @media (max-width: 768px) {
     .premium-slider-hero { 
-      height: 42vw; /* Increased slightly to ~ 2.4:1 ratio for better text balance */
+      height: 40vw; /* Sleek, wide aspect ratio */
     }
     
     .hero-slide-content {
-      padding: 0 2vw 6vw 2vw; /* Bottom padding pushes the flex-center calculation upwards, clearing the dots below */
+      padding: 0 4vw 4vw 4vw; /* Offset to keep things balanced over the dots */
       justify-content: center;
       text-align: center;
     }
     
     .slide-text {
-      max-width: 90vw;
+      max-width: 100vw;
       align-items: center;
     }
     
     .slide-badge {
-      font-size: 2.2vw;
-      padding: 0.6vw 1.8vw;
-      margin-bottom: 1.2vw;
-      border-radius: 0.6vw;
+      display: none; /* Hide for true minimal look */
     }
     
     .slide-title { 
-      font-size: 5vw; 
-      margin-bottom: 1.2vw;
-      text-shadow: 0 0 5px rgba(255,255,255,0.9);
+      font-size: 5.5vw; 
+      margin-bottom: 2.5vw;
+      line-height: 1.2;
+      text-shadow: 0 0 10px #ffffff, 0 0 20px rgba(255,255,255,0.9), 0 0 5px #ffffff; /* Strong white backlight so it's always readable */
     }
     
     .slide-desc { 
-      font-size: 2.5vw; 
-      margin-bottom: 2vw;
-      max-width: 85vw;
-      text-shadow: 0 0 5px rgba(255,255,255,0.9);
+      display: none; /* Hide on mobile so it doesn't clutter the artwork */
     }
     
     .btn-slide {
-      padding: 1.5vw 3vw;
-      font-size: 2.5vw;
-      border-radius: 4vw;
+      padding: 2vw 6vw;
+      font-size: 3vw;
+      border-radius: 6vw;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .slider-dots {
-      bottom: 10px;
+      bottom: 8px;
       gap: 8px;
     }
     
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
     }
     
     .dot.active {
-      width: 24px;
+      width: 20px;
       border-radius: 4px;
     }
   }
