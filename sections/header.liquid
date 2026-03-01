@@ -120,17 +120,7 @@
   </div>
 </div>
 
-<script>
-  // Simple Sticky Top Row
-  window.addEventListener('scroll', function() {
-    const header = document.getElementById('MainHeaderWrapper');
-    if (window.scrollY > 40) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  });
-</script>
+
 
 
 
@@ -141,16 +131,14 @@
     --light-gray-bg: #f8f9fa;
   }
 
-  .header-sticky-wrapper {
+  .header-v3 {
     position: sticky;
     top: 0;
     z-index: 1000;
     background: white;
-    transition: box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
   }
-  .header-sticky-wrapper.is-scrolled {
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  }
+
 
   .announcement-bar-v3 {
     background: #473dc1; /* Slightly darker purple for high contrast */
@@ -172,23 +160,9 @@
     font-weight: 400;
   }
 
-  .header-v3 {
-    background: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-  }
 
-  /* Compact Mode on Scroll */
-  .header-sticky-wrapper.is-scrolled .header-top-row {
-    padding: 8px 0;
-  }
-  .header-sticky-wrapper.is-scrolled .brand-text {
-    font-size: 18px;
-  }
-  .header-sticky-wrapper.is-scrolled .logo-circ {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
-  }
+
+
 
 
 
