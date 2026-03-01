@@ -136,8 +136,8 @@
             <span>7-Day Replacement Policy</span>
           </div>
         </div>
-
-    </div>
+      </div>
+    </div> <!-- Close product-main-grid -->
 
     <!-- Description Box (Full Width below grid on Desktop) -->
     <div class="product-description-box">
@@ -147,7 +147,7 @@
       </div>
       <div class="description-body">
         <div id="tab-description" class="tab-pane active">
-          {{ product.description }}
+          {{ product.description | replace: '\n', '<br>' }}
         </div>
         <div id="tab-features" class="tab-pane">
           <ul class="features-list-v3">
@@ -198,7 +198,12 @@
     background: white;
     padding-bottom: 60px;
     font-family: 'Inter', sans-serif;
-    overflow-x: hidden; /* Prevent horizontal layout shifts */
+    overflow-x: hidden;
+  }
+  .product-v3-wrapper .container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   /* Breadcrumb */
@@ -498,12 +503,18 @@
   }
 
   .description-body {
-    padding: 20px;
-    max-height: 400px;
+    padding: 30px;
+    max-height: 500px;
     overflow-y: auto;
-    font-size: 14px;
-    line-height: 1.7;
-    color: #444;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #374151;
+  }
+
+  /* Handle raw text with newlines if coming from meta fields or text area */
+  .tab-pane {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
   /* Custom Scrollbar */

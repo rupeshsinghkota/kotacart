@@ -245,13 +245,14 @@
 
 
   .announcement-bar-v3 {
-    background: #2e1d82; /* Deep PW Purple */
+    background: #3c1e9e; /* Deeper Purple */
     color: white;
-    padding: 8px 0;
-    font-size: 13px;
+    padding: 10px 0;
+    font-size: 14px;
     font-weight: 500;
     text-align: center;
   }
+  .announcement-bar-v3 strong { font-weight: 700; }
 
   .announcement-content {
     display: flex;
@@ -261,11 +262,9 @@
     width: 100%;
   }
 
-  /* Desktop specific spacing if meta is present */
-  @media (min-width: 769px) {
-    .announcement-content {
-      justify-content: space-between;
-    }
+  /* Always centered announcement bar */
+  .announcement-content {
+    justify-content: center;
   }
 
   .announcement-meta {
@@ -424,22 +423,33 @@
     
     .header-utility-container #nav-cart-desktop,
     .header-utility-container #nav-login-desktop {
-      display: none; /* Hide cart and login, keep orders */
+      display: none !important;
     }
 
     .header-utility-container .utility-item span {
-      display: none; /* Hide the text "My Orders" etc on mobile */
+      display: none !important;
     }
 
     .mobile-wa-icon {
       display: flex !important;
     }
     
+    .header-utility-container {
+      gap: 20px;
+    }
+    
+    .utility-item svg { width: 24px; height: 24px; }
+    
+    .search-form-v3 input {
+      border: 1.5px solid #e5e7eb !important;
+      border-radius: 8px;
+    }
+
     .header-search-container {
       grid-row: 2;
-      grid-column: 1 / -1; /* Stretch across entire bottom */
+      grid-column: 1 / -1; 
       width: 100%;
-      max-width: 100%;
+      padding: 5px 0 10px 0;
     }
     
     /* Hide the horizontal scrolling bottom nav on mobile */
