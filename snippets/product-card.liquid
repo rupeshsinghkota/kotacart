@@ -113,7 +113,7 @@
 
   .pw-card-image-wrapper {
     position: relative;
-    padding: 20px;
+    padding: 16px;
     background: #fff;
     border-radius: 12px 12px 0 0;
     display: flex;
@@ -143,18 +143,18 @@
   .pw-add-form {
     position: absolute;
     bottom: -15px; /* Overlap the border between image and text */
-    right: 20px;
+    right: 16px;
     z-index: 10;
   }
 
   .pw-add-btn {
-    background: #f8f6ff; /* Very pale purple matching the mockup */
-    color: var(--brand-purple, #5b4df3);
-    border: 1px solid var(--brand-purple, #5b4df3);
-    border-radius: 8px;
-    padding: 10px 22px;
-    font-size: 18px;
-    font-weight: 800;
+    background: #f4f3ff; /* Very pale purple matching the mockup */
+    color: #5b4df3; /* PW Purple */
+    border: 1px solid #5b4df3;
+    border-radius: 6px;
+    padding: 6px 20px;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0,0,0,0.02);
     transition: all 0.2s ease;
@@ -176,7 +176,7 @@
   }
 
   .pw-card-info {
-    padding: 24px 20px 20px 20px;
+    padding: 20px 16px 16px 16px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -184,36 +184,36 @@
 
   .pw-card-title-link {
     text-decoration: none;
-    color: #111827;
+    color: #212529;
   }
 
   .pw-card-title {
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
     line-height: 1.4;
-    margin: 0 0 12px 0;
+    margin: 0 0 10px 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    height: 46px;
-    color: #111827;
+    height: 40px;
+    color: #212529;
     transition: color 0.2s;
   }
 
   .pw-card-title-link:hover .pw-card-title {
-    color: var(--brand-purple, #5b4df3);
+    color: #5b4df3;
   }
 
   .pw-card-tag {
-    background: #e0f2fe; /* Light blue */
-    color: #0284c7; /* Darker blue */
+    background: #eaf3ff; /* Light blue tint */
+    color: #0b5ee6; /* Deep blue */
     display: inline-block;
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     align-self: flex-start;
   }
 
@@ -227,7 +227,7 @@
   .pw-price-left {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
 
   .pw-rating-badge {
@@ -238,24 +238,24 @@
     padding: 3px 6px;
     border-radius: 4px;
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 700;
   }
 
   .pw-current-price {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 800;
-    color: #111827;
-    letter-spacing: -0.5px;
+    color: #212529;
+    letter-spacing: -0.2px;
   }
 
   .pw-discount {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
     color: #16a34a; /* Vibrant green */
   }
 
   .pw-original-price {
-    font-size: 16px;
+    font-size: 13px;
     color: #9ca3af;
     text-decoration: line-through;
     font-weight: 500;
