@@ -1,40 +1,128 @@
-<div class="featured-collection container">
-  <h2 class="section-title">{{ section.settings.title | default: "Trending Modules" }}</h2>
+<div class="featured-collection-v3 container">
+  <div class="collection-header-v3">
+    <h2 class="collection-title-v3">{{ section.settings.title | default: "Trending Modules" }}</h2>
+    {% if section.settings.show_view_all and section.settings.collection != blank %}
+      <a href="{{ collections[section.settings.collection].url }}" class="collection-view-all">
+        See All <span aria-hidden="true">&rarr;</span>
+      </a>
+    {% endif %}
+  </div>
   
-  <div class="grid">
+  <div class="products-scroller">
     {% for product in collections[section.settings.collection].products limit: section.settings.limit %}
-      {% render 'product-card', product: product %}
+      <div class="product-scroller-item">
+        {% render 'product-card', product: product %}
+      </div>
     {% else %}
       {% for i in (1..section.settings.limit) %}
-        <div class="product-card">
-          <div class="product-image-placeholder" style="height: 250px; background: #eee;"></div>
-          <h3>Example Product Title</h3>
-          <span class="price">₹2,499</span>
+        <div class="product-scroller-item">
+          <div class="pw-card">
+            <div class="pw-card-placeholder" style="height: 250px; background: #eee;"></div>
+            <div class="pw-card-info">
+              <h3 class="pw-card-title">Example Product Title</h3>
+              <div class="pw-price-row">
+                <span class="pw-current-price">₹2,499</span>
+              </div>
+            </div>
+          </div>
         </div>
-      {% endfor %}
+      {% endendfor %}
     {% endfor %}
   </div>
-
-  {% if section.settings.show_view_all %}
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="{{ collections[section.settings.collection].url }}" class="btn-outline">View All Products</a>
-    </div>
-  {% endif %}
 </div>
 
 <style>
-  .btn-outline {
-    border: 2px solid var(--color-primary);
-    color: var(--color-primary);
-    padding: 12px 30px;
-    border-radius: 8px;
+  .featured-collection-v3 {
+    margin: 40px auto;
+  }
+
+  /* Section Header */
+  .collection-header-v3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding: 0 10px; /* Align with scrolled items */
+  }
+
+  .collection-title-v3 {
+    font-size: 24px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0;
+    letter-spacing: -0.5px;
+  }
+
+  .collection-view-all {
+    color: var(--brand-purple, #5b4df3);
     text-decoration: none;
     font-weight: 700;
-    transition: all 0.3s;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s;
   }
-  .btn-outline:hover {
-    background: var(--color-primary);
-    color: white;
+
+  .collection-view-all:hover {
+    opacity: 0.8;
+  }
+
+  /* Horizontal Scroller */
+  .products-scroller {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px; /* Allowance for card hover shadows */
+    margin: -10px; /* Offset padding */
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 10px;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Hide scrollbar for Chrome/Safari */
+  .products-scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-scroller-item {
+    flex: 0 0 calc(20% - 16px); /* 5 columns on desktop */
+    scroll-snap-align: start;
+    min-width: 280px; /* Minimum width before breaking layout */
+  }
+
+  @media (max-width: 1200px) {
+    .product-scroller-item {
+      flex: 0 0 calc(25% - 15px); /* 4 columns */
+    }
+  }
+
+  @media (max-width: 900px) {
+    .product-scroller-item {
+      flex: 0 0 calc(33.333% - 13.33px); /* 3 columns */
+    }
+  }
+
+  @media (max-width: 768px) {
+    .featured-collection-v3 {
+      margin: 20px auto;
+    }
+    .products-scroller {
+      gap: 16px;
+    }
+    .product-scroller-item {
+      flex: 0 0 250px; /* Fixed width for horizontal scrolling on mobile */
+    }
+    .collection-header-v3 {
+       padding: 0 5px;
+       margin-bottom: 16px;
+    }
+    .collection-title-v3 {
+       font-size: 20px;
+    }
+    .collection-view-all {
+       font-size: 14px;
+    }
   }
 </style>
 
@@ -46,7 +134,7 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Trending Modules"
+      "default": "Popular NEET Books"
     },
     {
       "type": "collection",
@@ -58,14 +146,14 @@
       "id": "limit",
       "min": 4,
       "max": 12,
-      "step": 4,
+      "step": 1,
       "label": "Products to show",
-      "default": 8
+      "default": 5
     },
     {
       "type": "checkbox",
       "id": "show_view_all",
-      "label": "Show 'View All' button",
+      "label": "Show 'See All' link",
       "default": true
     }
   ],
