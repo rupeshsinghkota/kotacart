@@ -23,11 +23,25 @@
           </div>
           
           <div class="main-image-wrapper">
-            <img id="MainProductImage" src="{{ product.featured_image | img_url: '800x800' }}" alt="{{ product.title }}">
-            <button class="preview-btn desktop-only">
+            <div class="mobile-scroll-container">
+              {% for image in product.images %}
+                <div class="mobile-slide">
+                  <img class="mobile-gallery-img" src="{{ image | img_url: '800x800' }}" alt="{{ product.title }}">
+                </div>
+              {% endfor %}
+            </div>
+            
+            <button class="preview-btn">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
               Preview Book
             </button>
+
+            <!-- Scroll Indicators for Mobile -->
+            <div class="mobile-dots-v3 mobile-only">
+              {% for image in product.images %}
+                <span class="dot {% if forloop.first %}active{% endif %}"></span>
+              {% endfor %}
+            </div>
           </div>
         </div>
 
@@ -216,11 +230,59 @@
     background: white;
     overflow: hidden;
   }
-  .main-image-wrapper img { width: 100%; height: auto; display: block; }
+  
+  .mobile-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .mobile-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    width: 100%;
+  }
+
+  .mobile-gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+
+  .mobile-dots-v3 {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #CBD5E1;
+    transition: all 0.3s;
+  }
+
+  .dot.active {
+    background: var(--pw-purple);
+    width: 24px;
+    border-radius: 4px;
+  }
   
   .preview-btn {
     position: absolute;
-    bottom: 20px;
+    bottom: 45px; /* Above dots on mobile */
     left: 20px;
     background: white;
     border: 1px solid var(--pw-border);
@@ -233,6 +295,7 @@
     gap: 8px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     cursor: pointer;
+    z-index: 20;
   }
 
   /* Action Buttons (Desktop) */
@@ -433,19 +496,42 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Thumbnail switching logic
-    const mainImg = document.getElementById('MainProductImage');
+    const scrollContainer = document.querySelector('.mobile-scroll-container');
+    const slides = document.querySelectorAll('.mobile-slide');
+    const dots = document.querySelectorAll('.dot');
     const thumbs = document.querySelectorAll('.thumb-item');
-    
-    thumbs.forEach(thumb => {
+
+    // Desktop Thumbnail Clicks
+    thumbs.forEach((thumb, index) => {
       thumb.addEventListener('click', function() {
-        const newSrc = this.getAttribute('data-image-url');
-        mainImg.src = newSrc;
+        // Find corresponding slide and scroll to it
+        slides[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
         
         thumbs.forEach(t => t.classList.remove('active'));
         this.classList.add('active');
+        
+        // Also update dots for mobile visibility if switched on desktop
+        updateDots(index);
       });
     });
+
+    // Mobile Scroll Dots Update
+    function updateDots(index) {
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[index]) dots[index].classList.add('active');
+    }
+
+    if (scrollContainer && dots.length > 0) {
+      scrollContainer.addEventListener('scroll', () => {
+        const slideWidth = scrollContainer.offsetWidth;
+        const index = Math.round(scrollContainer.scrollLeft / slideWidth);
+        updateDots(index);
+        
+        // Keep desktop thumbnails in sync
+        thumbs.forEach(t => t.classList.remove('active'));
+        if (thumbs[index]) thumbs[index].classList.add('active');
+      });
+    }
 
     // Variant selection logic (simplified UI toggle)
     const pills = document.querySelectorAll('.variant-pills .pill');
@@ -453,7 +539,6 @@
       pill.addEventListener('click', function() {
         pills.forEach(p => p.classList.remove('active'));
         this.classList.add('active');
-        // In a real Shopify theme, you'd update the hidden input ID here
       });
     });
   });
