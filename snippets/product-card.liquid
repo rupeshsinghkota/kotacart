@@ -49,14 +49,14 @@
     {% endif %}
 
     <div class="pw-price-row">
-      <span class="pw-current-price">{{ product.price | money }}</span>
+      <span class="pw-current-price">₹{{ product.price | money_without_currency }}</span>
       {% if product.compare_at_price > product.price %}
         {% assign discount = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round %}
         <span class="pw-discount">({{ discount }}% OFF)</span>
       {% endif %}
     </div>
     {% if product.compare_at_price > product.price %}
-      <div class="pw-original-price">{{ product.compare_at_price | money }}</div>
+      <div class="pw-original-price">₹{{ product.compare_at_price | money_without_currency }}</div>
     {% endif %}
   </div>
 </div>
