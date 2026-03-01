@@ -128,20 +128,20 @@
     .featured-collection-v3 {
       margin: 20px auto;
     }
-    /* Switch to 2-column grid on mobile */
+    /* Horizontal scroll — 1.5 cards visible to hint at more */
     .products-scroller {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       gap: 12px;
-      overflow-x: visible;
-      padding: 0 5px 10px;
+      overflow-x: auto;
+      padding: 4px 5px 14px;
       margin: 0;
-      scroll-snap-type: none;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
     .product-scroller-item {
-      flex: none;
+      flex: 0 0 62vw; /* ~1.5 cards visible */
       min-width: unset;
-      width: 100%;
+      scroll-snap-align: start;
     }
     .collection-header-v3 {
        padding: 0 5px;
