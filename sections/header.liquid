@@ -1,3 +1,4 @@
+{% unless template contains 'product' %}
 <div class="announcement-bar-v3">
   <div class="container announcement-content">
     <span class="desktop-only">🚨 <strong>Stay alert !</strong> Our team and delivery partner will never ask for OTPs or advance payments.</span>
@@ -5,6 +6,7 @@
     <span class="announcement-meta desktop-only">100% Secure Checkout | COD Available</span>
   </div>
 </div>
+{% endunless %}
 
 
 <div class="header-v3">
@@ -12,7 +14,8 @@
   <div class="header-top-row" id="HeaderTopRow">
     {% if template contains 'product' %}
       <!-- Mobile Specific Product Header (Sticky) -->
-      <div class="pm-header-mobile mobile-only">
+      <!-- Default mobile product header -->
+      <div class="pm-header-mobile mobile-only" id="PmHeaderDefault">
         <button class="pm-back-btn" onclick="history.back()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
@@ -20,10 +23,22 @@
           <span class="pm-title-text">{{ product.title | truncate: 50 }}</span>
         </div>
         <div class="pm-search-container">
-          <button class="pm-search-btn" onclick="document.querySelector('.search-form-v3 input').focus();">
+          <button class="pm-search-btn" id="PmSearchOpen" onclick="openProductSearch()">
              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           </button>
         </div>
+      </div>
+      <!-- Search overlay that replaces the header -->
+      <div class="pm-search-bar mobile-only" id="PmSearchBar">
+        <button class="pm-search-close" onclick="closeProductSearch()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <form action="/search" method="get" class="pm-search-form" id="PmSearchForm">
+          <input type="search" name="q" id="PmSearchInput" placeholder="Search Products" autocomplete="off">
+          <button type="submit" class="pm-search-submit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+        </form>
       </div>
       
       <div class="container header-grid desktop-only">
@@ -179,6 +194,25 @@
 </div>
 
 <script>
+  // Product page inline search (PW Store style)
+  function openProductSearch() {
+    const header = document.getElementById('PmHeaderDefault');
+    const searchBar = document.getElementById('PmSearchBar');
+    if (header && searchBar) {
+      header.style.display = 'none';
+      searchBar.style.display = 'flex';
+      document.getElementById('PmSearchInput').focus();
+    }
+  }
+  function closeProductSearch() {
+    const header = document.getElementById('PmHeaderDefault');
+    const searchBar = document.getElementById('PmSearchBar');
+    if (header && searchBar) {
+      searchBar.style.display = 'none';
+      header.style.display = 'flex';
+    }
+  }
+
   // Placeholder for any non-sticky scripts
   document.addEventListener('DOMContentLoaded', function() {
     // Mobile Menu Logic
@@ -343,6 +377,61 @@
     padding: 0;
     cursor: pointer;
     color: #000;
+  }
+
+  /* PW-style inline search bar for product pages */
+  .pm-search-bar {
+    display: none; /* shown via JS */
+    align-items: center;
+    width: 100%;
+    height: 44px;
+    padding: 6px 10px;
+    background: white;
+    border-bottom: 1px solid #f1f1f1;
+    box-sizing: border-box;
+    gap: 8px;
+  }
+  .pm-search-close {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #111;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .pm-search-form {
+    display: flex;
+    flex: 1;
+    border: 1.5px solid #5b4df3;
+    border-radius: 8px;
+    overflow: hidden;
+    height: 34px;
+  }
+  .pm-search-form input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 12px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    color: #111;
+  }
+  .pm-search-form input::placeholder {
+    color: #aaa;
+  }
+  .pm-search-submit {
+    background: #5b4df3;
+    border: none;
+    width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    flex-shrink: 0;
   }
 
   .header-top-row {
