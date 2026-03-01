@@ -49,19 +49,6 @@
           </div>
         </div>
 
-        <!-- Desktop Action Buttons (Floating below image in PW style) -->
-        <div class="desktop-actions-v3 desktop-only">
-          {% form 'product', product, class: 'product-form-v3' %}
-            <input type="hidden" name="id" value="{{ current_variant.id }}">
-            <div class="action-btn-group">
-        <button type="submit" name="add" class="btn-secondary-v3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-          Add To Bag
-        </button>
-              <button type="submit" name="checkout" class="btn-primary-v3">Buy Now</button>
-            </div>
-          {% endform %}
-        </div>
       </div>
 
       <!-- Right Column: Info -->
@@ -108,6 +95,20 @@
             </div>
           </div>
         {% endif %}
+
+        <!-- Desktop Action Buttons -->
+        <div class="desktop-actions-v3 desktop-only">
+          {% form 'product', product, id: 'DesktopProductForm' %}
+            <input type="hidden" name="id" value="{{ current_variant.id }}">
+            <div class="action-btn-group">
+              <button type="submit" name="add" class="btn-secondary-v3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                Add To Bag
+              </button>
+              <button type="submit" name="checkout" class="btn-primary-v3">Buy Now</button>
+            </div>
+          {% endform %}
+        </div>
 
         <!-- Pincode Checker -->
         <div class="pincode-checker-v3">
@@ -177,6 +178,14 @@
 </div>
 
 <style>
+  /* Utility Classes */
+  @media (min-width: 769px) {
+    .mobile-only { display: none !important; }
+  }
+  @media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+  }
+
   :root {
     --pw-purple: #5b4df3; /* PW Store Primary Purple */
     --pw-green: #28a745;
@@ -332,7 +341,7 @@
 
   /* Action Buttons (Desktop) */
   .desktop-actions-v3 {
-    margin-top: 30px;
+    margin: 0 0 30px 0;
   }
   .action-btn-group {
     display: grid;
@@ -634,12 +643,22 @@
       });
     }
 
-    // Variant selection logic (simplified UI toggle)
+    // Variant selection logic
     const pills = document.querySelectorAll('.variant-pills .pill');
+    const variantInputs = document.querySelectorAll('input[name="id"]');
+    
     pills.forEach(pill => {
       pill.addEventListener('click', function() {
+        const variantId = this.getAttribute('data-variant-id');
+        
+        // Update UI
         pills.forEach(p => p.classList.remove('active'));
         this.classList.add('active');
+        
+        // Update all forms (Desktop and Mobile)
+        variantInputs.forEach(input => {
+          input.value = variantId;
+        });
       });
     });
 
@@ -664,6 +683,5 @@
         });
       });
     });
-  });
   });
 </script>
