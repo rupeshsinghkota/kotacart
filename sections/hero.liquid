@@ -228,41 +228,82 @@
     }
 
     .slider-dots {
-      bottom: 1vw;
-      gap: 1vw;
+      bottom: 10px;
+      gap: 8px;
     }
     
     .dot {
-      width: 1vw;
-      height: 1vw;
+      width: 8px;
+      height: 8px;
     }
     
     .dot.active {
-      width: 3vw;
-      border-radius: 1vw;
+      width: 24px;
+      border-radius: 4px;
     }
   }
 </style>
 
 <script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots = document.querySelectorAll('.dot');
+  document.addEventListener('DOMContentLoaded', function() {
+    const sliderHero = document.getElementById('HeroSlider-{{ section.id }}');
+    if (!sliderHero) return;
 
-  function gotoSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = n;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
+    let currentSlide = 0;
+    const slides = sliderHero.querySelectorAll('.hero-slide');
+    const dots = sliderHero.querySelectorAll('.dot');
+    let autoPlayInterval;
 
-  function nextSlide() {
-    let next = (currentSlide + 1) % slides.length;
-    gotoSlide(next);
-  }
+    window.gotoSlide = function(n) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = n;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+      resetAutoPlay();
+    };
 
-  setInterval(nextSlide, 5000); // Auto-scroll every 5s
+    function nextSlide() {
+      let next = (currentSlide + 1) % slides.length;
+      window.gotoSlide(next);
+    }
+
+    function prevSlide() {
+      let prev = (currentSlide - 1 + slides.length) % slides.length;
+      window.gotoSlide(prev);
+    }
+
+    function resetAutoPlay() {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    // Initialize Autoplay
+    resetAutoPlay();
+
+    // Mobile swipe controls
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    sliderHero.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+    }, {passive: true});
+
+    sliderHero.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].clientX;
+      handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+      const swipeThreshold = 50; // Minimum distance to register a swipe
+      if (touchStartX - touchEndX > swipeThreshold) {
+        nextSlide(); // Swipe left -> next slide
+      }
+      if (touchEndX - touchStartX > swipeThreshold) {
+        prevSlide(); // Swipe right -> prev slide
+      }
+    }
+  });
 </script>
 
 {% schema %}
