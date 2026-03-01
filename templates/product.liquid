@@ -503,18 +503,25 @@
   }
 
   .description-body {
-    padding: 30px;
-    max-height: 500px;
-    overflow-y: auto;
-    font-size: 15px;
+    padding: 40px;
+    font-size: 16px;
     line-height: 1.8;
     color: #374151;
   }
 
-  /* Handle raw text with newlines if coming from meta fields or text area */
+  /* Handle raw text with newlines */
   .tab-pane {
     white-space: pre-wrap;
     word-break: break-word;
+  }
+
+  @media (max-width: 768px) {
+    .description-body {
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-size: 14px;
+    }
   }
 
   /* Custom Scrollbar */
