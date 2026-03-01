@@ -187,64 +187,59 @@
 
   @media (max-width: 768px) {
     .premium-slider-hero { 
-      height: 60vw; /* Expanding slightly to 1.6:1 for perfect text fit */
-    }
-    
-    .hero-slide {
-       /* Make background overlay stronger on mobile so text always pops */
-       background-image: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0) 100%) !important;
+      height: 33.33vw; /* Forces exact 3:1 width/height ratio */
     }
     
     .hero-slide-content {
-      padding: 0 4vw;
-      justify-content: flex-start;
-      text-align: left;
+      padding: 0 1vw;
+      justify-content: center;
+      text-align: center;
     }
     
     .slide-text {
-      max-width: 75vw;
-      align-items: flex-start;
+      max-width: 90vw;
+      align-items: center;
     }
     
     .slide-badge {
-      font-size: 2.8vw;
-      padding: 1vw 2.5vw;
-      margin-bottom: 2vw;
-      border-radius: 1vw;
+      font-size: 1.8vw;
+      padding: 0.5vw 1.5vw;
+      margin-bottom: 1vw;
+      border-radius: 0.5vw;
     }
     
     .slide-title { 
-      font-size: 7vw; 
-      margin-bottom: 2vw;
-      text-shadow: none;
+      font-size: 4vw; 
+      margin-bottom: 1vw;
+      text-shadow: 0 0 5px rgba(255,255,255,0.9);
     }
     
     .slide-desc { 
-      font-size: 3.5vw; 
-      margin-bottom: 4vw;
-      max-width: 100%;
-      text-shadow: none;
+      font-size: 2vw; 
+      margin-bottom: 1.5vw;
+      max-width: 80vw;
+      text-shadow: 0 0 5px rgba(255,255,255,0.9);
     }
     
     .btn-slide {
-      padding: 2.2vw 5vw;
-      font-size: 3.5vw;
-      border-radius: 5vw;
+      padding: 1vw 2.5vw;
+      font-size: 2vw;
+      border-radius: 3vw;
     }
 
     .slider-dots {
-      bottom: 2.5vw;
-      gap: 2vw;
+      bottom: 1vw;
+      gap: 1vw;
     }
     
     .dot {
-      width: 2vw;
-      height: 2vw;
+      width: 1vw;
+      height: 1vw;
     }
     
     .dot.active {
-      width: 5vw;
-      border-radius: 2vw;
+      width: 3vw;
+      border-radius: 1vw;
     }
   }
 </style>
