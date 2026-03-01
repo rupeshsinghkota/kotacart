@@ -186,9 +186,19 @@
   }
 
   @media (max-width: 768px) {
-    .premium-slider-hero { height: 400px; }
-    .slide-title { font-size: 32px; }
-    .slide-desc { font-size: 15px; }
+    .premium-slider-hero { 
+      height: auto; 
+      aspect-ratio: 3 / 1; /* Enforce exact 3:1 short banner ratio */
+    }
+    
+    /* Since 3:1 is extremely short, hide the huge HTML text block on mobile and rely on the background image design, just like PW */
+    .hero-slide-content {
+      display: none;
+    }
+
+    .slider-dots {
+      bottom: 10px; /* Pull dots up into the shorter frame */
+    }
   }
 </style>
 
