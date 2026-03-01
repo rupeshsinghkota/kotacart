@@ -3,11 +3,15 @@
   
   <div class="container">
     <nav class="breadcrumb-v3">
-      <a href="/">Home</a> 
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      <a href="/collections/all">Study Materials</a>
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      <span>{{ product.title }}</span>
+      <div class="breadcrumb-left">
+        <a href="/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a> 
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <a href="/collections/all">Study Materials</a>
+      </div>
+      <button class="share-btn mobile-only">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        Share
+      </button>
     </nav>
 
     <div class="product-main-grid">
@@ -32,8 +36,8 @@
             </div>
             
             <button class="preview-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              Preview Book
+              <span>Preview Book</span>
+              <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF" width="16" height="16">
             </button>
 
             <!-- Scroll Indicators for Mobile -->
@@ -50,10 +54,10 @@
           {% form 'product', product, class: 'product-form-v3' %}
             <input type="hidden" name="id" value="{{ current_variant.id }}">
             <div class="action-btn-group">
-              <button type="submit" name="add" class="btn-secondary-v3">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                Add To Bag
-              </button>
+        <button type="submit" name="add" class="btn-secondary-v3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Add To Bag
+        </button>
               <button type="submit" name="checkout" class="btn-primary-v3">Buy Now</button>
             </div>
           {% endform %}
@@ -63,25 +67,21 @@
       <!-- Right Column: Info -->
       <div class="product-info-column">
         <h1 class="product-title-v3">{{ product.title }}</h1>
-        
-        <div class="product-badges-v3">
-          <span class="badge-edition">2026 Edition</span>
-          {% if product.available %}
-            <span class="badge-stock">In Stock</span>
-          {% endif %}
-        </div>
+        <p class="product-vendor-v3">By {{ product.vendor }}</p>
 
         <div class="price-container-v3">
           <div class="price-row">
             <span class="current-price">{{ product.price | money }}</span>
-            {% if product.compare_at_price > product.price %}
-              <span class="old-price">{{ product.compare_at_price | money }}</span>
-              <span class="discount-percent">
-                {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}% OFF
+            {% if current_variant.compare_at_price > product.price %}
+              <span class="old-price">{{ current_variant.compare_at_price | money }}</span>
+              <span class="discount-percent-v3">
+                ({{ current_variant.compare_at_price | minus: product.price | times: 100 | divided_by: current_variant.compare_at_price }}% OFF)
               </span>
             {% endif %}
           </div>
-          <p class="tax-label">(Inclusive of all taxes)</p>
+          {% if product.available %}
+            <div class="stock-status-v3">In Stock</div>
+          {% endif %}
         </div>
 
         <!-- Offers Section -->
@@ -137,11 +137,24 @@
           </div>
         </div>
 
-        <!-- Description Accordion -->
-        <div class="product-description-v3">
-          <div class="desc-tab active">Book Description</div>
-          <div class="desc-content">
-            {{ product.description }}
+        <!-- Description Box -->
+        <div class="product-description-box">
+          <div class="description-header">
+            <div class="desc-tab active" data-tab="description">Book Description</div>
+            <div class="desc-tab" data-tab="features">Key Features</div>
+          </div>
+          <div class="description-body">
+            <div id="tab-description" class="tab-pane active">
+              {{ product.description }}
+            </div>
+            <div id="tab-features" class="tab-pane">
+              <ul class="features-list-v3">
+                <li>📚 Comprehensive Complete Set</li>
+                <li>✅ 100% Verified Content</li>
+                <li>🚚 Fast Express Shipping</li>
+                <li>🔄 7-Day Easy Replacement</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -154,7 +167,7 @@
       <input type="hidden" name="id" value="{{ current_variant.id }}">
       <div class="mobile-btn-group">
         <button type="submit" name="add" class="m-btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
           Add To Bag
         </button>
         <button type="submit" name="checkout" class="m-btn-primary">Buy Now</button>
@@ -184,13 +197,30 @@
   .breadcrumb-v3 {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 20px 0;
+    justify-content: space-between;
+    padding: 15px 0;
     font-size: 13px;
     color: var(--pw-text-gray);
   }
-  .breadcrumb-v3 a { color: inherit; text-decoration: none; }
+  .breadcrumb-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .breadcrumb-v3 a { color: inherit; text-decoration: none; display: flex; align-items: center; }
   .breadcrumb-v3 span { color: var(--pw-text-dark); font-weight: 500; }
+
+  .share-btn {
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--pw-text-dark);
+    cursor: pointer;
+  }
 
   /* Grid Layout */
   .product-main-grid {
@@ -283,21 +313,22 @@
   
   .preview-btn {
     position: absolute;
-    bottom: 45px; /* Above dots on mobile */
-    left: 20px;
+    bottom: 12px;
+    right: 12px;
     background: white;
     border: 1px solid var(--pw-border);
-    padding: 10px 15px;
-    border-radius: 30px;
+    padding: 6px 10px;
+    border-radius: 4px;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     cursor: pointer;
     z-index: 20;
   }
+  .preview-btn img { margin-top: -1px; }
 
   /* Action Buttons (Desktop) */
   .desktop-actions-v3 {
@@ -333,28 +364,25 @@
 
   /* Info Section */
   .product-title-v3 {
-    font-size: 26px;
-    font-weight: 800;
+    font-size: 24px;
+    font-weight: 700;
     color: var(--pw-text-dark);
-    line-height: 1.3;
-    margin: 0 0 15px 0;
+    line-height: 1.4;
+    margin: 0 0 5px 0;
   }
-  
-  .product-badges-v3 {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
+  .product-vendor-v3 {
+    font-size: 14px;
+    color: var(--pw-text-gray);
+    margin-bottom: 20px;
   }
-  .badge-edition { background: #fee2e2; color: #dc2626; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
-  .badge-stock { background: #dcfce7; color: #16a34a; padding: 4px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; }
 
   /* Pricing */
-  .price-container-v3 { margin-bottom: 30px; }
-  .price-row { display: flex; align-items: baseline; gap: 12px; }
-  .current-price { font-size: 32px; font-weight: 900; color: var(--pw-text-dark); }
-  .old-price { font-size: 18px; text-decoration: line-through; color: var(--pw-text-gray); }
-  .discount-percent { color: var(--pw-green); font-weight: 800; font-size: 18px; }
-  .tax-label { font-size: 12px; color: var(--pw-text-gray); margin: 5px 0 0 0; }
+  .price-container-v3 { margin-bottom: 25px; }
+  .price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 5px; }
+  .current-price { font-size: 28px; font-weight: 800; color: var(--pw-text-dark); }
+  .old-price { font-size: 16px; text-decoration: line-through; color: var(--pw-text-gray); }
+  .discount-percent-v3 { color: #16a34a; font-weight: 700; font-size: 16px; }
+  .stock-status-v3 { color: #16a34a; font-weight: 700; font-size: 14px; }
 
   /* Offers */
   .offers-section-v3 {
@@ -423,19 +451,75 @@
     color: #444;
   }
 
-  /* Description */
-  .desc-tab {
-    font-size: 16px;
-    font-weight: 800;
-    padding-bottom: 12px;
-    border-bottom: 3px solid var(--pw-purple);
-    margin-bottom: 20px;
-    display: inline-block;
+  /* Description Box Styling */
+  .product-description-box {
+    border: 1px solid var(--pw-border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 30px;
+    background: white;
   }
-  .desc-content {
+
+  .description-header {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid var(--pw-border);
+  }
+
+  .description-header .desc-tab {
+    padding: 15px 25px;
     font-size: 14px;
-    line-height: 1.8;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--pw-text-gray);
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: 0;
+  }
+
+  .description-header .desc-tab.active {
+    color: var(--pw-purple);
+    border-bottom-color: var(--pw-purple);
+    background: white;
+  }
+
+  .description-body {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.7;
     color: #444;
+  }
+
+  /* Custom Scrollbar */
+  .description-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .description-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .description-body::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+  }
+
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
+  }
+
+  .features-list-v3 {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .features-list-v3 li {
+    padding: 10px 0;
+    border-bottom: 1px solid #f1f1f1;
+    font-weight: 500;
   }
 
   /* Mobile Styles */
@@ -468,33 +552,43 @@
       right: 0;
       width: 100%;
       background: white;
-      padding: 12px 15px;
-      padding-bottom: calc(12px + env(safe-area-inset-bottom));
-      box-shadow: 0 -10px 20px rgba(0,0,0,0.05);
+      padding: 10px 15px;
+      padding-bottom: calc(10px + env(safe-area-inset-bottom));
+      box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
       z-index: 2000;
       box-sizing: border-box;
       display: flex;
       justify-content: center;
     }
-    .mobile-action-form {
-      margin: 0 !important;
-      padding: 0 !important;
-      width: 100%;
-      max-width: 100%;
-    }
     .mobile-btn-group {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      grid-template-columns: 1fr 1.1fr; /* Buy Now slightly wider */
+      gap: 10px;
       width: 100%;
     }
-    .m-btn-primary, .m-btn-secondary {
-      padding: 14px 10px;
-      font-size: 14px;
-      margin: 0;
+    .m-btn-primary {
+      background: var(--pw-purple);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      padding: 14px;
+      font-size: 15px;
       width: 100%;
-      box-sizing: border-box;
-      white-space: nowrap; /* Prevent icon/text wrap issues causing shift */
+    }
+    .m-btn-secondary {
+      background: white;
+      color: var(--pw-purple);
+      border: 1.5px solid var(--pw-purple);
+      border-radius: 8px;
+      font-weight: 700;
+      padding: 14px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
     }
     
     body { padding-bottom: 100px; } /* Space for sticky bar */
@@ -548,5 +642,28 @@
         this.classList.add('active');
       });
     });
+
+    // Description Tab Logic
+    const descTabs = document.querySelectorAll('.description-header .desc-tab');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    descTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        const target = this.getAttribute('data-tab');
+        
+        // Update Tabs
+        descTabs.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Update Panes
+        tabPanes.forEach(pane => {
+          pane.classList.remove('active');
+          if (pane.id === 'tab-' + target) {
+            pane.classList.add('active');
+          }
+        });
+      });
+    });
+  });
   });
 </script>
