@@ -119,35 +119,34 @@
       padding: 20px 10px;
     }
     .trust-grid {
-      grid-template-columns: repeat(2, 1fr); /* Super clean 2x2 grid */
-      gap: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 6px;
     }
     .trust-item {
-      padding: 12px 10px;
-      gap: 12px;
-      flex-direction: row; /* Align icon left, text right */
-      text-align: left;
-      border-radius: 12px;
+      padding: 12px 4px;
+      gap: 8px;
+      flex-direction: column; /* Stack icon top, text bottom */
+      text-align: center;
+      border-radius: 10px;
+      flex: 1;
     }
     .trust-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
     }
     .trust-icon svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
     }
     .trust-text h3 {
-      font-size: 12.5px;
-      margin-bottom: 2px;
+      font-size: 10px;
+      margin-bottom: 0;
+      line-height: 1.2;
     }
     .trust-text p {
-      display: block; /* Restored descriptions! */
-      font-size: 10.5px;
-      line-height: 1.2;
-      margin: 0;
-      color: #888;
+      display: none; /* Hide descriptions to fit everything in 1 row */
     }
   }
 </style>
