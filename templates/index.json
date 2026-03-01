@@ -1,40 +1,55 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-    "sections": {
-        "hero": {
-            "type": "hero",
-            "settings": {}
-        },
-        "trust": {
-            "type": "trust-bar",
-            "settings": {}
-        },
-        "trending_neet": {
-            "type": "featured-collection",
-            "settings": {
-                "title": "Popular NEET Books",
-                "limit": 8
-            }
-        },
-        "trending_jee": {
-            "type": "featured-collection",
-            "settings": {
-                "title": "Trending JEE Modules",
-                "limit": 8
-            }
-        },
-        "recent_arrivals": {
-            "type": "featured-collection",
-            "settings": {
-                "title": "Recently Added Sets",
-                "limit": 8
-            }
-        }
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
     },
-    "order": [
-        "hero",
-        "trust",
-        "trending_neet",
-        "trending_jee",
-        "recent_arrivals"
-    ]
+    "trust": {
+      "type": "trust-bar",
+      "settings": {}
+    },
+    "trending_neet": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Popular NEET Books",
+        "collection": "neet-modules",
+        "limit": 8,
+        "show_view_all": true
+      }
+    },
+    "trending_jee": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Trending JEE Modules",
+        "collection": "jee-modules",
+        "limit": 8,
+        "show_view_all": true
+      }
+    },
+    "recent_arrivals": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Recently Added Sets",
+        "collection": "",
+        "limit": 8,
+        "show_view_all": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "trending_neet",
+    "trending_jee",
+    "recent_arrivals"
+  ]
 }
