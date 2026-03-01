@@ -186,18 +186,39 @@
   }
 
   @media (max-width: 768px) {
-    .premium-slider-hero { 
-      height: 33.33vw; /* Forces exact 3:1 width/height ratio */
-      min-height: 120px; /* Safety fallback for tiny screens */
+    .premium-slider-hero { height: 420px; }
+    
+    .hero-slide-content {
+      padding: 0 20px;
     }
     
-    /* Since 3:1 is extremely short, hide the huge HTML text block on mobile and rely on the background image design, just like PW */
-    .hero-slide-content {
-      display: none;
+    .slide-text {
+      max-width: 100%;
+    }
+    
+    .slide-badge {
+      font-size: 11px;
+      padding: 4px 12px;
+      margin-bottom: 15px;
+    }
+    
+    .slide-title { 
+      font-size: 36px; 
+      margin-bottom: 15px;
+    }
+    
+    .slide-desc { 
+      font-size: 16px; 
+      margin-bottom: 25px;
+    }
+    
+    .btn-slide {
+      padding: 12px 30px;
+      font-size: 14px;
     }
 
     .slider-dots {
-      bottom: 10px; /* Pull dots up into the shorter frame */
+      bottom: 20px;
     }
   }
 </style>
