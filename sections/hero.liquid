@@ -187,8 +187,8 @@
 
   @media (max-width: 768px) {
     .premium-slider-hero { 
-      height: auto; 
-      aspect-ratio: 3 / 1; /* Enforce exact 3:1 short banner ratio */
+      height: 33.33vw; /* Forces exact 3:1 width/height ratio */
+      min-height: 120px; /* Safety fallback for tiny screens */
     }
     
     /* Since 3:1 is extremely short, hide the huge HTML text block on mobile and rely on the background image design, just like PW */
