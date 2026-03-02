@@ -107,6 +107,10 @@
     margin-bottom: 60px;
   }
 
+  .footer-links-wrapper {
+    display: contents;
+  }
+
   .brand-logo .logo-circ {
     background: #000;
     color: #fff;
@@ -152,10 +156,11 @@
   }
 
   .social-icon:hover {
-    background: var(--brand-purple);
+    background: var(--brand-purple, #5b4df3);
     color: white;
-    border-color: var(--brand-purple);
+    border-color: var(--brand-purple, #5b4df3);
     transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(91, 77, 243, 0.2);
   }
 
   .footer-links h4, .footer-secure h4 {
