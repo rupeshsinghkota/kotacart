@@ -2,9 +2,9 @@
 
 <!-- Breadcrumb -->
 <div class="container col-breadcrumb desktop-only">
-  <a href="/">Home</a>
-  <span class="bc-sep">›</span>
-  <a href="/collections">All Collections</a>
+  <a href="/" class="bc-home" aria-label="Home">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+  </a>
   <span class="bc-sep">›</span>
   <span class="bc-current">{{ collection.title }}</span>
 </div>
@@ -235,13 +235,20 @@
     color: #666;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
   }
-  .col-breadcrumb a { color: #5b4df3; text-decoration: none; }
-  .col-breadcrumb a:hover { text-decoration: underline; }
-  .bc-sep { color: #aaa; }
-  .bc-current { color: #333; font-weight: 600; }
+  .bc-home {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .bc-home:hover { color: #5b4df3; }
+  .bc-home svg { display: block; }
+  .bc-sep { color: #9ca3af; font-size: 14px; }
+  .bc-current { color: #1a1a1a; font-weight: 700; font-size: 14px; }
 
   /* ─── Mobile Top Bar ─────────────────────────────── */
   .col-mobile-topbar {
