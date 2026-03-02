@@ -1,13 +1,13 @@
 {% paginate collection.products by 24 %}
 
 <!-- Breadcrumb -->
-<div class="container col-breadcrumb desktop-only">
+<nav class="container col-breadcrumb" aria-label="breadcrumb">
   <a href="/" class="bc-home" aria-label="Home">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
   </a>
-  <span class="bc-sep">›</span>
+  <svg class="bc-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
   <span class="bc-current">{{ collection.title }}</span>
-</div>
+</nav>
 
 <!-- Mobile Top Bar: Filter + Sort + Category Chips -->
 <div class="col-mobile-topbar mobile-only">
@@ -230,25 +230,29 @@
 
   /* ─── Breadcrumb ─────────────────────────────────── */
   .col-breadcrumb {
-    padding: 14px 0 8px;
+    padding: 10px 0;
     font-size: 13px;
     color: #666;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
   }
   .bc-home {
     display: flex;
     align-items: center;
-    color: #6b7280;
+    color: #9ca3af;
     text-decoration: none;
     transition: color 0.2s;
   }
   .bc-home:hover { color: #5b4df3; }
   .bc-home svg { display: block; }
-  .bc-sep { color: #9ca3af; font-size: 14px; }
+  .bc-arrow { color: #9ca3af; flex-shrink: 0; }
   .bc-current { color: #1a1a1a; font-weight: 700; font-size: 14px; }
+  @media (max-width: 768px) {
+    .col-breadcrumb { padding: 8px 0; }
+    .bc-current { font-size: 13px; }
+  }
 
   /* ─── Mobile Top Bar ─────────────────────────────── */
   .col-mobile-topbar {
