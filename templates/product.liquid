@@ -84,6 +84,34 @@
           {% endif %}
         </div>
 
+        <!-- Product Specs from Metafields -->
+        <div class="product-meta-specs-v3">
+          {% if product.metafields.custom.target_exam_year != blank %}
+            <div class="meta-spec-item">
+              <span class="spec-label">Target Exam</span>
+              <span class="spec-value">{{ product.metafields.custom.target_exam_year }}</span>
+            </div>
+          {% endif %}
+          {% if product.metafields.custom.edition != blank %}
+            <div class="meta-spec-item">
+              <span class="spec-label">Edition</span>
+              <span class="spec-value">{{ product.metafields.custom.edition }}</span>
+            </div>
+          {% endif %}
+          {% if product.metafields.custom.publication_year != blank %}
+            <div class="meta-spec-item">
+              <span class="spec-label">Published In</span>
+              <span class="spec-value">{{ product.metafields.custom.publication_year }}</span>
+            </div>
+          {% endif %}
+          {% if product.metafields.custom.book_condition != blank %}
+            <div class="meta-spec-item">
+              <span class="spec-label">Condition</span>
+              <span class="spec-value">{{ product.metafields.custom.book_condition }}</span>
+            </div>
+          {% endif %}
+        </div>
+
         <!-- Offers Section -->
         <div class="offers-section-v3">
           <div class="offer-card">
@@ -433,6 +461,36 @@
   .old-price { font-size: 14px; text-decoration: line-through; color: var(--pw-text-gray); }
   .discount-percent-v3 { color: #16a34a; font-weight: 700; font-size: 15px; }
   .stock-status-v3 { color: #16a34a; font-weight: 700; font-size: 14px; margin-top: 5px; }
+
+  /* Meta Specs */
+  .product-meta-specs-v3 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    background: #F1F5F9; /* Light slate background */
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+  }
+  .meta-spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .spec-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #64748B;
+    letter-spacing: 0.8px;
+    font-weight: 700;
+  }
+  .spec-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0F172A;
+  }
 
   /* Offers */
   .offers-section-v3 {
