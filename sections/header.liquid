@@ -1,9 +1,18 @@
 {% unless template contains 'product' %}
 <div class="announcement-bar-v3">
   <div class="container announcement-content">
-    <span class="desktop-only">🚨 <strong>Stay alert !</strong> Our team and delivery partner will never ask for OTPs or advance payments.</span>
-    <span class="mobile-only">🚨 <strong>Stay alert !</strong> Never share OTPs.</span>
-    <span class="announcement-meta desktop-only">100% Secure Checkout | COD Available</span>
+    <div class="pre-header-left desktop-only">
+      <span>✨ 100% Genuine Materials</span>
+      <span class="sep">|</span>
+      <span>🚚 Super Fast Delivery</span>
+    </div>
+    <div class="pre-header-center">
+      <span class="alert-text"><strong>Stay Alert!</strong> Team Kotacart never asks for advance payment via personal links.</span>
+    </div>
+    <div class="pre-header-right desktop-only">
+      <a href="/pages/privacy-policy">Privacy</a>
+      <a href="/pages/contact">Support</a>
+    </div>
   </div>
 </div>
 {% endunless %}
@@ -28,7 +37,7 @@
           </button>
         </div>
       </div>
-      <!-- Search overlay that replaces the header (hidden by default, toggled via JS) -->
+      <!-- Search overlay -->
       <div class="pm-search-bar" id="PmSearchBar" style="display:none;">
         <button class="pm-search-close" onclick="closeProductSearch()">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -47,32 +56,34 @@
         </button>
         <div class="header-logo-container">
           <a href="/" class="brand-logo">
-            <span class="logo-circ">K</span>
-            <span class="brand-text">Kotacart <span class="store-label">Store</span></span>
+            <div class="logo-circles-pw">
+              <span class="logo-p">P</span><span class="logo-w">W</span>
+            </div>
+            <span class="brand-pw-text">Store</span>
           </a>
         </div>
         <div class="header-search-container">
           <form action="/search" method="get" class="search-form-v3" id="DesktopSearchForm">
             <input type="search" name="q" placeholder="Search Products" aria-label="Search">
-            <button type="submit">{% render 'icon-search' %}</button>
+            <button type="submit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
           </form>
         </div>
         <div class="header-utility-container">
           <a href="/account" class="utility-item" id="nav-orders-desktop">
-            <div class="utility-icon">{% render 'icon-orders' %}</div>
+            <div class="utility-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
             <span>My Orders</span>
           </a>
           <a href="/cart" class="utility-item" id="nav-cart-desktop">
-            <div class="utility-icon">{% render 'icon-cart' %}</div>
+            <div class="utility-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
             <span>My Bag</span>
           </a>
           <a href="/account/login" class="btn-login-v3" id="nav-login-desktop">Login</a>
-          <a href="https://wa.me/919999999999" target="_blank" class="utility-item mobile-wa-icon" aria-label="WhatsApp Support">
-            <div class="utility-icon" style="color: #25D366;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </div>
-            <span>Help</span>
-          </a>
         </div>
       </div>
     {% else %}
@@ -82,32 +93,34 @@
         </button>
         <div class="header-logo-container">
           <a href="/" class="brand-logo">
-            <span class="logo-circ">K</span>
-            <span class="brand-text">Kotacart <span class="store-label">Store</span></span>
+            <div class="logo-circles-pw">
+              <span class="logo-p">P</span><span class="logo-w">W</span>
+            </div>
+            <span class="brand-pw-text">Store</span>
           </a>
         </div>
         <div class="header-search-container">
           <form action="/search" method="get" class="search-form-v3">
             <input type="search" name="q" placeholder="Search Products" aria-label="Search">
-            <button type="submit">{% render 'icon-search' %}</button>
+            <button type="submit">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
           </form>
         </div>
         <div class="header-utility-container">
           <a href="/account" class="utility-item" id="nav-orders-desktop">
-            <div class="utility-icon">{% render 'icon-orders' %}</div>
+            <div class="utility-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
             <span>My Orders</span>
           </a>
           <a href="/cart" class="utility-item" id="nav-cart-desktop">
-            <div class="utility-icon">{% render 'icon-cart' %}</div>
+            <div class="utility-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
             <span>My Bag</span>
           </a>
           <a href="/account/login" class="btn-login-v3" id="nav-login-desktop">Login</a>
-          <a href="https://wa.me/919999999999" target="_blank" class="utility-item mobile-wa-icon" aria-label="WhatsApp Support">
-            <div class="utility-icon" style="color: #25D366;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            </div>
-            <span>Help</span>
-          </a>
         </div>
       </div>
     {% endif %}
@@ -188,6 +201,9 @@
             </a>
           </li>
         </ul>
+        <button class="nav-scroll-btn" id="NavScrollRight">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
       </nav>
     </div>
   </div>
@@ -236,6 +252,15 @@
     if (mobileToggle) mobileToggle.addEventListener('click', openMobileMenu);
     if (mobileClose) mobileClose.addEventListener('click', closeMobileMenu);
     if (mobileOverlay) mobileOverlay.addEventListener('click', closeMobileMenu);
+
+    // Nav Scroll functionality
+    const navScrollRight = document.getElementById('NavScrollRight');
+    const categoryNavList = document.querySelector('.category-nav ul');
+    if (navScrollRight && categoryNavList) {
+      navScrollRight.addEventListener('click', () => {
+        categoryNavList.scrollBy({ left: 200, behavior: 'smooth' });
+      });
+    }
   });
 </script>
 
@@ -243,10 +268,12 @@
 <div class="mobile-nav-overlay" id="MobileNavOverlay"></div>
 <div class="mobile-nav-drawer" id="MobileNavDrawer">
   <div class="mobile-nav-header">
-    <span class="brand-logo" style="margin:0;">
-      <span class="logo-circ">K</span>
-      <span class="brand-text">Kotacart</span>
-    </span>
+    <a href="/" class="brand-logo" style="margin:0;">
+      <div class="logo-circles-pw">
+        <span class="logo-p">P</span><span class="logo-w">W</span>
+      </div>
+      <span class="brand-pw-text" style="font-size:20px;">Store</span>
+    </a>
     <button class="mobile-nav-close" id="MobileNavClose">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
     </button>
@@ -296,31 +323,48 @@
 
 
   .announcement-bar-v3 {
-    background: #3c1e9e;
-    color: white;
-    padding: 6px 0;
-    font-size: 13px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 8px 0;
+    font-size: 12px;
     font-weight: 500;
-    text-align: center;
   }
-  .announcement-bar-v3 strong { font-weight: 700; }
-
   .announcement-content {
     display: flex;
-    justify-content: center; /* Center on all devices for consistency */
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
-    width: 100%;
+    color: #475569;
+  }
+  .pre-header-left {
+    display: flex;
+    gap: 15px;
+  }
+  .pre-header-right {
+    display: flex;
+    gap: 20px;
+  }
+  .pre-header-right a {
+    text-decoration: none;
+    color: #64748b;
+    transition: color 0.2s;
+  }
+  .pre-header-right a:hover {
+    color: var(--brand-purple);
+  }
+  .alert-text {
+    color: #1e293b;
+  }
+  .alert-text strong {
+    color: #dc2626;
   }
 
-  /* Always centered announcement bar */
-  .announcement-content {
-    justify-content: center;
-  }
-
-  .announcement-meta {
-    opacity: 0.8;
-    font-weight: 400;
+  /* Robust Sticky Header */
+  .header-v3 {
+    position: sticky;
+    top: 0;
+    z-index: 3000;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   }
 
 
@@ -436,11 +480,7 @@
 
   .header-top-row {
     background: white;
-    border-bottom: 1px solid #f1f1f1;
-    position: sticky;
-    top: 0;
-    z-index: 2000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    border-bottom: 1px solid #f1f5f9;
   }
 
   .header-grid {
@@ -629,28 +669,52 @@
     .store-label { display: none; }
   }
 
-  .logo-circ {
+  .logo-circles-pw {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #000;
-    color: white;
-    width: 32px;
-    height: 32px;
+    color: #fff;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-weight: 800;
+    font-size: 16px;
+    gap: 1px;
+    line-height: 1;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .logo-p, .logo-w {
+    display: inline-block;
+  }
+  .logo-p { margin-right: -2px; }
+  .logo-w { transform: scale(1.1) translateY(1px); }
+
+  .brand-pw-text {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    color: #000;
+  }
+
+  .nav-scroll-btn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: 1px solid #e2e8f0;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900;
-    font-size: 18px;
-  }
-  .brand-text {
-    font-weight: 800;
-    font-size: 20px;
-    letter-spacing: -0.5px;
-  }
-  .store-label {
-    font-weight: 400;
-    color: #666;
-    font-size: 16px;
-    margin-left: 5px;
+    color: var(--brand-purple);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    z-index: 10;
   }
 
   /* Search Bar - Center */
