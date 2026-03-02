@@ -1,68 +1,537 @@
-<div class="container collection-header">
-  <h1 class="col-page-title">{{ collection.title }}</h1>
-  {% if collection.description != blank %}
-    <div class="col-page-desc">{{ collection.description }}</div>
-  {% endif %}
+{% paginate collection.products by 24 %}
+
+<!-- Breadcrumb -->
+<div class="container col-breadcrumb desktop-only">
+  <a href="/">Home</a>
+  <span class="bc-sep">›</span>
+  <a href="/collections">All Collections</a>
+  <span class="bc-sep">›</span>
+  <span class="bc-current">{{ collection.title }}</span>
 </div>
 
-<div class="container">
-  <div class="col-products-grid">
-    {% for product in collection.products %}
-      <div class="col-product-item">
-        {% render 'product-card', product: product %}
-      </div>
-    {% else %}
-      <p style="grid-column: 1/-1; text-align:center; padding:60px 0; color:#999;">No products found in this collection.</p>
-    {% endfor %}
+<!-- Mobile Top Bar: Filter + Sort + Category Chips -->
+<div class="col-mobile-topbar mobile-only">
+  <div class="col-filter-sort-row">
+    <button class="filter-toggle-btn" id="FilterToggleBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+      Filter
+    </button>
+    <div class="filter-sort-divider"></div>
+    <button class="sort-toggle-btn" id="SortToggleBtnMobile">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
+      Sort By
+    </button>
   </div>
-
-  {% if paginate.pages > 1 %}
-    <div class="pagination">{{ paginate | default_pagination }}</div>
-  {% endif %}
+  <!-- Horizontal Category Chips -->
+  <div class="col-category-chips">
+    <a href="/collections" class="chip {% if collection.handle == '' %}chip-active{% endif %}">ALL</a>
+    <a href="/collections/jee-modules" class="chip {% if collection.handle == 'jee-modules' %}chip-active{% endif %}">JEE Modules</a>
+    <a href="/collections/neet-modules" class="chip {% if collection.handle == 'neet-modules' %}chip-active{% endif %}">NEET Modules</a>
+    <a href="/collections/school" class="chip {% if collection.handle == 'school' %}chip-active{% endif %}">Foundation</a>
+    <a href="/collections/full-sets" class="chip {% if collection.handle == 'full-sets' %}chip-active{% endif %}">Full Sets</a>
+    <a href="/collections/jee-modules-11th" class="chip {% if collection.handle == 'jee-modules-11th' %}chip-active{% endif %}">11th Nurture</a>
+    <a href="/collections/jee-modules-12th" class="chip {% if collection.handle == 'jee-modules-12th' %}chip-active{% endif %}">12th Enthuse</a>
+    <a href="/collections/jee-modules-dropper" class="chip {% if collection.handle == 'jee-modules-dropper' %}chip-active{% endif %}">Dropper</a>
+    <a href="/collections/allen-jee" class="chip {% if collection.handle == 'allen-jee' %}chip-active{% endif %}">Allen</a>
+    <a href="/collections/aakash-jee" class="chip {% if collection.handle == 'aakash-jee' %}chip-active{% endif %}">Aakash</a>
+    <a href="/collections/resonance-jee" class="chip {% if collection.handle == 'resonance-jee' %}chip-active{% endif %}">Resonance</a>
+  </div>
 </div>
+
+<!-- Main Layout -->
+<div class="container col-main-layout">
+
+  <!-- Sidebar Filters (Desktop Only) -->
+  <aside class="col-sidebar desktop-only" id="ColSidebar">
+    <h3 class="sidebar-title">Filters</h3>
+
+    <div class="filter-group">
+      <div class="filter-group-head">CATEGORY</div>
+      <ul class="filter-list">
+        <li><a href="/collections/jee-modules" class="filter-link {% if collection.handle == 'jee-modules' %}active{% endif %}">JEE Modules</a></li>
+        <li><a href="/collections/jee-modules-11th" class="filter-link {% if collection.handle == 'jee-modules-11th' %}active{% endif %}">11th Nurture Modules</a></li>
+        <li><a href="/collections/jee-modules-12th" class="filter-link {% if collection.handle == 'jee-modules-12th' %}active{% endif %}">12th Enthuse Modules</a></li>
+        <li><a href="/collections/jee-modules-dropper" class="filter-link {% if collection.handle == 'jee-modules-dropper' %}active{% endif %}">Dropper Modules</a></li>
+        <li><a href="/collections/neet-modules" class="filter-link {% if collection.handle == 'neet-modules' %}active{% endif %}">NEET Modules</a></li>
+        <li><a href="/collections/neet-modules-11th" class="filter-link {% if collection.handle == 'neet-modules-11th' %}active{% endif %}">NEET 11th Modules</a></li>
+        <li><a href="/collections/neet-modules-12th" class="filter-link {% if collection.handle == 'neet-modules-12th' %}active{% endif %}">NEET 12th Modules</a></li>
+        <li><a href="/collections/school" class="filter-link {% if collection.handle == 'school' %}active{% endif %}">Foundation</a></li>
+        <li><a href="/collections/full-sets" class="filter-link {% if collection.handle == 'full-sets' %}active{% endif %}">Full Sets</a></li>
+      </ul>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-head">INSTITUTE</div>
+      <ul class="filter-list">
+        <li><a href="/collections/allen-jee" class="filter-link {% if collection.handle == 'allen-jee' %}active{% endif %}">Allen</a></li>
+        <li><a href="/collections/aakash-jee" class="filter-link {% if collection.handle == 'aakash-jee' %}active{% endif %}">Aakash</a></li>
+        <li><a href="/collections/resonance-jee" class="filter-link {% if collection.handle == 'resonance-jee' %}active{% endif %}">Resonance Kota</a></li>
+        <li><a href="/collections/pw-jee" class="filter-link {% if collection.handle == 'pw-jee' %}active{% endif %}">Physics Wallah (PW)</a></li>
+        <li><a href="/collections/motion-jee" class="filter-link {% if collection.handle == 'motion-jee' %}active{% endif %}">Motion Education</a></li>
+        <li><a href="/collections/allen-neet" class="filter-link {% if collection.handle == 'allen-neet' %}active{% endif %}">Allen (NEET)</a></li>
+        <li><a href="/collections/aakash-neet" class="filter-link {% if collection.handle == 'aakash-neet' %}active{% endif %}">Aakash (NEET)</a></li>
+      </ul>
+    </div>
+
+    <div class="filter-group">
+      <div class="filter-group-head">AVAILABILITY</div>
+      <ul class="filter-list">
+        <li><a href="{{ collection.url }}?filter.p.available=true" class="filter-link">In Stock Only</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Right Content Area -->
+  <div class="col-content-area">
+    <!-- Col Header Row: Title + Count + Sort -->
+    <div class="col-header-row">
+      <div class="col-title-count">
+        <h1 class="col-page-title">{{ collection.title }}</h1>
+        <span class="col-count">({{ collection.products_count }} items)</span>
+      </div>
+      <div class="col-sort-wrap desktop-only">
+        <label class="sort-label">Sort By :</label>
+        <div class="sort-select-wrap">
+          <select id="CollectionSort" class="sort-select" onchange="window.location=this.value">
+            <option value="{{ collection.url }}?sort_by=manual" {% if collection.sort_by == 'manual' %}selected{% endif %}>Latest</option>
+            <option value="{{ collection.url }}?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+            <option value="{{ collection.url }}?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+            <option value="{{ collection.url }}?sort_by=best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Best Selling</option>
+            <option value="{{ collection.url }}?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>A–Z</option>
+          </select>
+          <svg class="sort-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="col-products-grid">
+      {% for product in collection.products %}
+        <div class="col-product-item">
+          {% render 'product-card', product: product %}
+        </div>
+      {% else %}
+        <p class="col-empty">No products found in this collection.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if paginate.pages > 1 %}
+      <div class="col-pagination">
+        {{ paginate | default_pagination }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Mobile Filter Drawer Overlay -->
+<div class="filter-overlay" id="FilterOverlay"></div>
+
+<!-- Mobile Filter Drawer -->
+<div class="filter-drawer" id="FilterDrawer">
+  <div class="filter-drawer-header">
+    <span>Filters</span>
+    <button class="filter-drawer-close" id="FilterDrawerClose">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="filter-drawer-body">
+    <div class="filter-group">
+      <div class="filter-group-head">CATEGORY</div>
+      <ul class="filter-list">
+        <li><a href="/collections/jee-modules" class="filter-link {% if collection.handle == 'jee-modules' %}active{% endif %}">JEE Modules</a></li>
+        <li><a href="/collections/jee-modules-11th" class="filter-link {% if collection.handle == 'jee-modules-11th' %}active{% endif %}">11th Nurture</a></li>
+        <li><a href="/collections/jee-modules-12th" class="filter-link {% if collection.handle == 'jee-modules-12th' %}active{% endif %}">12th Enthuse</a></li>
+        <li><a href="/collections/jee-modules-dropper" class="filter-link {% if collection.handle == 'jee-modules-dropper' %}active{% endif %}">Dropper</a></li>
+        <li><a href="/collections/neet-modules" class="filter-link {% if collection.handle == 'neet-modules' %}active{% endif %}">NEET Modules</a></li>
+        <li><a href="/collections/school" class="filter-link {% if collection.handle == 'school' %}active{% endif %}">Foundation</a></li>
+        <li><a href="/collections/full-sets" class="filter-link {% if collection.handle == 'full-sets' %}active{% endif %}">Full Sets</a></li>
+      </ul>
+    </div>
+    <div class="filter-group">
+      <div class="filter-group-head">INSTITUTE</div>
+      <ul class="filter-list">
+        <li><a href="/collections/allen-jee" class="filter-link {% if collection.handle == 'allen-jee' %}active{% endif %}">Allen</a></li>
+        <li><a href="/collections/aakash-jee" class="filter-link {% if collection.handle == 'aakash-jee' %}active{% endif %}">Aakash</a></li>
+        <li><a href="/collections/resonance-jee" class="filter-link {% if collection.handle == 'resonance-jee' %}active{% endif %}">Resonance Kota</a></li>
+        <li><a href="/collections/pw-jee" class="filter-link {% if collection.handle == 'pw-jee' %}active{% endif %}">Physics Wallah</a></li>
+        <li><a href="/collections/motion-jee" class="filter-link {% if collection.handle == 'motion-jee' %}active{% endif %}">Motion Education</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Sort Drawer -->
+<div class="sort-drawer" id="SortDrawerMobile">
+  <div class="sort-drawer-inner">
+    <div class="sort-drawer-head">Sort By</div>
+    <a href="{{ collection.url }}?sort_by=manual" class="sort-option {% if collection.sort_by == 'manual' or collection.sort_by == blank %}active{% endif %}">Latest</a>
+    <a href="{{ collection.url }}?sort_by=price-ascending" class="sort-option {% if collection.sort_by == 'price-ascending' %}active{% endif %}">Price: Low to High</a>
+    <a href="{{ collection.url }}?sort_by=price-descending" class="sort-option {% if collection.sort_by == 'price-descending' %}active{% endif %}">Price: High to Low</a>
+    <a href="{{ collection.url }}?sort_by=best-selling" class="sort-option {% if collection.sort_by == 'best-selling' %}active{% endif %}">Best Selling</a>
+    <a href="{{ collection.url }}?sort_by=title-ascending" class="sort-option {% if collection.sort_by == 'title-ascending' %}active{% endif %}">A–Z</a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter Drawer
+    const filterBtn = document.getElementById('FilterToggleBtn');
+    const filterDrawer = document.getElementById('FilterDrawer');
+    const filterOverlay = document.getElementById('FilterOverlay');
+    const filterClose = document.getElementById('FilterDrawerClose');
+
+    function openFilter() {
+      filterDrawer && filterDrawer.classList.add('is-open');
+      filterOverlay && filterOverlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeFilter() {
+      filterDrawer && filterDrawer.classList.remove('is-open');
+      filterOverlay && filterOverlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    filterBtn && filterBtn.addEventListener('click', openFilter);
+    filterClose && filterClose.addEventListener('click', closeFilter);
+    filterOverlay && filterOverlay.addEventListener('click', function() {
+      closeFilter();
+      closeSortDrawer();
+    });
+
+    // Sort Drawer
+    const sortBtn = document.getElementById('SortToggleBtnMobile');
+    const sortDrawer = document.getElementById('SortDrawerMobile');
+
+    function openSortDrawer() {
+      sortDrawer && sortDrawer.classList.add('is-open');
+      filterOverlay && filterOverlay.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSortDrawer() {
+      sortDrawer && sortDrawer.classList.remove('is-open');
+      filterOverlay && filterOverlay.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+    sortBtn && sortBtn.addEventListener('click', openSortDrawer);
+  });
+</script>
+
+{% endpaginate %}
 
 <style>
-  .collection-header {
-    padding: 24px 0 16px;
+  /* ─── Utilities ─────────────────────────────────────────────── */
+  .desktop-only { display: block; }
+  .mobile-only  { display: none;  }
+
+  @media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+    .mobile-only  { display: block !important; }
   }
-  .col-page-title {
-    font-size: 22px;
-    font-weight: 800;
-    color: #111;
-    margin: 0 0 6px;
-  }
-  .col-page-desc {
-    font-size: 14px;
+
+  /* ─── Breadcrumb ─────────────────────────────────── */
+  .col-breadcrumb {
+    padding: 14px 0 8px;
+    font-size: 13px;
     color: #666;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .col-breadcrumb a { color: #5b4df3; text-decoration: none; }
+  .col-breadcrumb a:hover { text-decoration: underline; }
+  .bc-sep { color: #aaa; }
+  .bc-current { color: #333; font-weight: 600; }
+
+  /* ─── Mobile Top Bar ─────────────────────────────── */
+  .col-mobile-topbar {
+    position: sticky;
+    top: 0; /* sticks just below main header */
+    z-index: 200;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  .col-filter-sort-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+  }
+  .filter-toggle-btn, .sort-toggle-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 0;
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .filter-sort-divider {
+    width: 1px;
+    background: #eee;
+  }
+  .col-category-chips {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .col-category-chips::-webkit-scrollbar { display: none; }
+  .chip {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .chip-active, .chip:hover {
+    background: #5b4df3;
+    border-color: #5b4df3;
+    color: #fff;
   }
 
-  /* Desktop: 4-column grid */
-  .col-products-grid {
+  /* ─── Main Layout ────────────────────────────────── */
+  .col-main-layout {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-bottom: 60px;
-  }
-
-  @media (max-width: 1100px) {
-    .col-products-grid { grid-template-columns: repeat(3, 1fr); }
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    align-items: start;
   }
 
   @media (max-width: 768px) {
-    .collection-header { padding: 14px 0 10px; }
-    .col-page-title { font-size: 18px; }
-
-    /* 2-column grid — same as home page, same as PW Store */
-    .col-products-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 80px; /* space for sticky bar */
+    .col-main-layout {
+      grid-template-columns: 1fr;
+      padding-top: 14px;
+      gap: 0;
     }
   }
 
-  .pagination {
+  /* ─── Sidebar ────────────────────────────────────── */
+  .col-sidebar {
+    position: sticky;
+    top: 80px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .sidebar-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #111;
+    margin: 0 0 18px;
+  }
+  .filter-group {
+    margin-bottom: 20px;
+  }
+  .filter-group-head {
+    font-size: 11px;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .filter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .filter-link {
+    display: block;
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 13.5px;
+    color: #444;
+    text-decoration: none;
+    transition: all 0.15s;
+    font-weight: 500;
+  }
+  .filter-link:hover, .filter-link.active {
+    background: #f0eeff;
+    color: #5b4df3;
+    font-weight: 600;
+  }
+
+  /* ─── Content Area ───────────────────────────────── */
+  .col-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .col-title-count {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .col-page-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+    margin: 0;
+  }
+  .col-count {
+    font-size: 13px;
+    color: #888;
+    font-weight: 500;
+  }
+  .col-sort-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sort-label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+  }
+  .sort-select-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .sort-select {
+    appearance: none;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 8px 36px 8px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 500;
+    outline: none;
+  }
+  .sort-chevron {
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+    color: #666;
+  }
+
+  /* ─── Product Grid ───────────────────────────────── */
+  .col-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 1200px) {
+    .col-products-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .col-products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+  @media (max-width: 768px) {
+    .col-products-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 80px; }
+  }
+
+  .col-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 0;
+    color: #999;
+    font-size: 16px;
+  }
+
+  /* ─── Pagination ─────────────────────────────────── */
+  .col-pagination {
     text-align: center;
     padding: 30px 0;
   }
+  .col-pagination .pagination { display: inline-flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+
+  /* ─── Mobile Filter Drawer ───────────────────────── */
+  .filter-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1000;
+  }
+  .filter-overlay.is-open { display: block; }
+
+  .filter-drawer {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    background: #fff;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .filter-drawer.is-open { left: 0; }
+  .filter-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .filter-drawer-close {
+    background: none; border: none; cursor: pointer; color: #666;
+  }
+  .filter-drawer-body {
+    padding: 16px 20px;
+  }
+
+  /* ─── Mobile Sort Drawer (bottom sheet) ──────────── */
+  .sort-drawer {
+    position: fixed;
+    bottom: -100%;
+    left: 0; right: 0;
+    background: #fff;
+    z-index: 1001;
+    border-radius: 16px 16px 0 0;
+    transition: bottom 0.3s ease;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.12);
+  }
+  .sort-drawer.is-open { bottom: 0; }
+  .sort-drawer-inner { padding: 20px 20px 40px; }
+  .sort-drawer-head {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: #111;
+  }
+  .sort-option {
+    display: block;
+    padding: 12px 8px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .sort-option.active {
+    color: #5b4df3;
+    font-weight: 700;
+  }
+  .sort-option:last-child { border-bottom: none; }
 </style>
